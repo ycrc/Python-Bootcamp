@@ -5,6 +5,8 @@
 \useoutertheme{infolines}
 \useinnertheme[shadow=true]{rounded}
 
+\newcommand\smallfont{\fontsize{8pt}{7.2}\selectfont}
+
 \usepackage{multimedia}
 
 \title{Introduction to Python}
@@ -49,5 +51,480 @@
 \item Manage compute clusters
 \end{itemize}
 \end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}
+\frametitle{Why Python?}
+
+\begin{itemize}
+\item Free, portable, easy to learn
+\item Intuitive, easy to learn
+\item Ideal for rapid prototyping but also for large applications
+\item Reasonably efficient
+\item Numerous extensions (modules)
+\end{itemize}
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}
+\frametitle{You can use Python to...}
+\begin{itemize}
+\item Convert or filter files
+\item Automate repetitive tasks
+\item Compute statistics
+\item Build processing pipelines
+\item Simple web applications
+\item ...
+\end{itemize}
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Basic Python Types and Assignment}
+
+\begin{verbatim}
+radius=2
+pi=3.14
+diam=radius*2
+area=pi*(radius**2)
+title="fun with strings"
+pi="cherry"
+pi=3.1415926535897932384626433832795028841971693993751058\
+2097494459230781640628620899862803482534211706798214808651\
+32823066470938446095505822317253594081284811174502841027019\
+385211055596446229489549303819644288109756659334461284756482
+delicious=True
+\end{verbatim}
+
+Note:
+\begin{itemize}
+\item variables do not need to be declared or typed
+\item integers and floats can be used together
+\item the same variable can hold different types
+\item lines can be broken using \
+\item python supports arbitrary length floating point numbers
+\end{itemize}
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Other Python Types: lists}
+
+Lists are like arrays in other languages.  
+\begin{verbatim}
+>>> l=[1,2,3,4,5,6,7,8,9,10]
+>>> l[5]
+6
+>>> l[3:5]
+[4, 5]
+>>> l[5:]
+[6, 7, 8, 9, 10]
+>>> l[5:-3]
+[6, 7]
+>>> l[2]=3.145
+>>> l[3]="pi"
+>>> l
+[1, 2, 3.145, 'pi', 5, 6, 7, 8, 9, 10]
+>>> len(l)
+10
+\end{verbatim}
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Other Python Types: strings}
+
+Strings are fully featured types in python.
+
+\begin{verbatim}
+>>> s="Donald"
+>>> s[0:3]
+'Don'
+>>> s+" Duck"
+'Donald Duck'
+>>> s[0]="R"
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 's' object does not support item assignment
+>>> len(s)
+6
+>>> s.upper()
+'DONALD'
+\end{verbatim}
+
+Note:
+\begin{itemize}
+\item strings cannot be modified
+\item strings can be concatenated and sliced much like lists
+\item strings are objects with lots of useful methods
+\end{itemize}
+
+\end{frame}
+
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Other Python Types: dictionaries}
+
+Dicts are like hash tables in other languages.  
+\begin{verbatim}
+>>> coins={'penny':1, 'nickle':5, 'dime':10, 'quarter':25}
+>>> coins['penny']
+1
+>>> coins.keys()
+['quarter', 'nickle', 'penny', 'dime']
+>>> coins['half']=50
+>>> coins
+{'quarter': 25, 'nickle': 5, 'penny': 1, 'half': 50, 'dime': 10}
+>>> len(coins)
+5
+\end{verbatim}
+
+Note:
+\begin{itemize}
+\item dicts associate keys with values, which can be of (almost) any type 
+\item dicts have length, but are not ordered
+\item looking up values in dicts is very fast, even if the dict is BIG.
+\end{itemize}
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Control Flow Statements: if}
+
+If-then statements allow you to do a test, and then do something
+based on the result:
+
+\begin{verbatim}
+>>> import random
+>>> v=random.randint(0,100)
+>>> if v < 50:
+...   print 'got a little one', v
+... else:
+...   print 'got a big one', v
+... 
+got a big one 93
+\end{verbatim}
+
+Note that the else clause is optional.
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Control Flow Statements: while}
+
+While statements execute one or more statements repeatedly until the 
+test is false:
+
+\begin{verbatim}
+>>> import random
+>>> count=0
+>>> while count<100:
+...   count+=random.randint(0,10)
+...   print str(count)+" ",
+... 
+5  11  19  19  21  28  35  37  47  53  53  57  58  59  60  66  71  
+75  82  86  94  101 
+\end{verbatim}
+
+\end{frame}
+
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Control Flow Statements: for}
+
+For statements take some sort of iterable object and loop once for 
+every value.
+
+\begin{verbatim}
+>>> for fruit in ['apple', 'orange', 'banana']:
+...   print fruit, 
+... 
+apple orange banana
+>>> for i in range(5):
+...   print i,
+... 
+0 1 2 3 4 
+
+\end{verbatim}
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Control Flow Statements: altering loops}
+
+While and For loops can skip steps (continue) or terminate early (break).
+
+\begin{verbatim}
+>>> for i in range(10):
+...   if i%2: continue
+...   print i, 
+... 
+0 2 4 6 8
+>>> for i in range(10):
+...   if i>5: break
+...   print i,
+... 
+0 1 2 3 4 5
+\end{verbatim}
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Note on blocks of code}
+
+In the previous example:
+\begin{verbatim}
+>>> for i in range(10):
+...   if i>5: break
+...   print i,
+\end{verbatim}
+
+How did we know that \textit{print i} was part of the loop?
+
+Many programming languages use \{ \} or Begin End to delineate blocks of
+code to treat as a single unit.
+
+Python uses white space (blanks).  To define a block of code, indent the block.
+By convention and for readability, indent 3 spaces.
+
+Many editors will do this for you.
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Functions}
+
+TODO
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{File Formatter example}
+
+Task: given a file of hundreds or thousands of lines:
+
+\begin{verbatim}
+FCID,Lane,Sample_ID,SampleRef,index,Description,Control,Recipe,...
+160212,1,A1,human,TAAGGCGA-TAGATCGC,None,N,Eland-rna,Mei,Jon_mix10
+160212,1,A2,human,CGTACTAG-CTCTCTAT,None,N,Eland-rna,Mei,Jon_mix10
+160212,1,A3,human,AGGCAGAA-TATCCTCT,None,N,Eland-rna,Mei,Jon_mix10
+160212,1,A4,human,TCCTGAGC-AGAGTAGA,None,N,Eland-rna,Mei,Jon_mix10
+...
+\end{verbatim}
+
+Remove the last 3 letters from the 5th column:
+
+\begin{verbatim}
+FCID,Lane,Sample_ID,SampleRef,index,Description,Control,Recipe,...
+160212,1,A1,human,TAAGGCGA-TAGAT,None,N,Eland-rna,Mei,Jon_mix10
+160212,1,A2,human,CGTACTAG-CTCTC,None,N,Eland-rna,Mei,Jon_mix10
+160212,1,A3,human,AGGCAGAA-TATCC,None,N,Eland-rna,Mei,Jon_mix10
+160212,1,A4,human,TCCTGAGC-AGAGT,None,N,Eland-rna,Mei,Jon_mix10
+...
+\end{verbatim}
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{File Formatter example (cont)}
+\smallfont
+In pseudocode we might write:
+\begin{verbatim}
+ open the input file
+ read the first header line, and print it out
+ for each remaining line in the file
+   read the line
+   find the value in the 5th column
+   truncate it by removing the last three letters
+   put the line back together
+   print it out
+\end{verbatim}
+In Python:
+\begin{verbatim}
+import sys
+fp=open(sys.argv[1])
+hdr=fp.readline().strip()
+print hdr
+for l in fp:
+    flds=l.strip().split(',')
+    flds[4]=flds[4][:-3]
+    print ','.join(flds)
+\end{verbatim}
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{File Formatter example (cont)}
+
+\textit{open the input file}
+
+\begin{verbatim}
+import sys
+fp=open(sys.argv[1])
+\end{verbatim}
+
+Sys is a system module with a number of useful methods.  
+
+sys.argv() returns the command line as an array of strings.  Argv[0] is the command, argv[1] is the first
+argument, etc.
+
+Open takes a filename, and returns a ``file pointer''.  We'll use that
+to read from the file.
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{File Formatter example (cont)}
+
+\textit{read the first header line, and print it out}
+
+\begin{verbatim}
+hdr=fp.readline().strip()
+print hdr
+\end{verbatim}
+
+We'll call readline() on the file pointer to get a single line from the file.
+(the header line).  Strip() removes the return at the end of the line.
+Then we print it.
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{File Formatter example (cont)}
+
+\textit{for each remaining line in the file}
+
+\textit{read the line}
+
+
+\begin{verbatim}
+for l in fp:
+  ...
+\end{verbatim}
+
+A file pointer is a special object called an iterator.  Instead of 
+explicitly calling readline() for each line, we can just loop on the file 
+pointer, getting one line each time. Since we already read the header, we 
+won't get that line.
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{File Formatter example (cont)}
+
+\textit{find the value in the 5th column}
+
+\textit{truncate it by removing the last three letters}
+
+\begin{verbatim}
+    flds=l.strip().split(',')
+    flds[4]=flds[4][:-3]
+\end{verbatim}
+
+Just like before, we strip the return from the line.  We split it into
+individual elements where we find commas.  The 5th field is referenced by
+flds[4], since python starts indexing with 0.  [:-3] takes all characters
+of the string until the last 3.
+  
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{File Formatter example (cont)}
+
+
+\textit{put the line back together}
+
+\textit{print it out}
+
+\begin{verbatim}
+    print ','.join(flds)
+\end{verbatim}
+
+Join takes a list of strings, and combines them into one string using the 
+string provided. Then we just print that string.  
+ 
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{File Formatter example (cont)}
+
+Reviewing:
+
+\begin{verbatim}
+import sys
+fp=open(sys.argv[1])
+hdr=fp.readline().strip()
+print hdr
+for l in fp:
+    flds=l.strip().split(',')
+    flds[4]=flds[4][:-3]
+    print ','.join(flds)
+\end{verbatim}
+
+
+We would invoke it like this:
+\begin{verbatim}
+$ python fixfile.py badfile.txt > fixedfile.txt
+\end{verbatim}
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Some variations on the theme}
+
+We could skip certain lines
+
+\begin{verbatim}
+import sys
+fp=open(sys.argv[1])
+hdr=fp.readline().strip()
+print hdr
+for l in fp:
+    if l[3] != 'human': continue
+    flds=l.strip().split(',')
+    flds[4]=flds[4][:-3]
+    print ','.join(flds)
+\end{verbatim}
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Some variations on the theme}
+
+We could operate on multiple input files
+
+\begin{verbatim}
+import sys
+wrotehdr=False
+for f in sys.argv[1:]:
+  fp=open(f)
+  hdr=fp.readline().strip()
+  if not wrotehdr:
+    print hdr
+    wrotehdr=True
+    for l in fp:
+      if l[3] != 'human': continue
+      flds=l.strip().split(',')
+      flds[4]=flds[4][:-3]
+      print ','.join(flds)
+\end{verbatim}
+\end{frame}
+
+
 
 \end{document}

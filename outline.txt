@@ -1,7 +1,9 @@
 
 
 Why python
-   free; portable; easy to learn; intuitive; rapid prototyping; quick to write small programs, but also possible to build large applications; reasonably efficient; numerous extensions (modules)
+   free; portable; easy to learn; intuitive; rapid prototyping; 
+   quick to write small programs, but also possible to build 
+   large applications; reasonably efficient; numerous extensions (modules)
 
 just a few things you can use python for
    converting or filtering files
@@ -41,7 +43,8 @@ Some useful idioms
 working with files: open, close, readline, implicit readline,
 
 putting it all together, an actual program that does something useful:
-   read lines from file, process them, reformat and output, keeping statistics: sys.argv, open, read, split, dict, % formating, writing
+   read lines from file, process them, reformat and output
+   (my config file example)
 
 another useful program
    create pipeline running various programs: subprocess, glob, logging, second module
