@@ -89,10 +89,8 @@ diam=radius*2
 area=pi*(radius**2)
 title="fun with strings"
 pi="cherry"
-pi=3.1415926535897932384626433832795028841971693993751058\
-2097494459230781640628620899862803482534211706798214808651\
-32823066470938446095505822317253594081284811174502841027019\
-385211055596446229489549303819644288109756659334461284756482
+longnum=31415926535897932384626433832795028841971693993751058\
+2097494459230781640628620899862803482534211706798214808651
 delicious=True
 \end{verbatim}
 
@@ -102,7 +100,7 @@ Note:
 \item integers and floats can be used together
 \item the same variable can hold different types
 \item lines can be broken using \
-\item python supports arbitrary length floating point numbers
+\item python supports arbitrary length integer numbers
 \end{itemize}
 \end{frame}
 
@@ -201,9 +199,9 @@ based on the result:
 >>> import random
 >>> v=random.randint(0,100)
 >>> if v < 50:
-...   print 'got a little one', v
+...    print 'got a little one', v
 ... else:
-...   print 'got a big one', v
+...    print 'got a big one', v
 ... 
 got a big one 93
 \end{verbatim}
@@ -223,8 +221,8 @@ test is false:
 >>> import random
 >>> count=0
 >>> while count<100:
-...   count+=random.randint(0,10)
-...   print str(count)+" ",
+...    count+=random.randint(0,10)
+...    print str(count)+" ",
 ... 
 5  11  19  19  21  28  35  37  47  53  53  57  58  59  60  66  71  
 75  82  86  94  101 
@@ -242,11 +240,11 @@ every value.
 
 \begin{verbatim}
 >>> for fruit in ['apple', 'orange', 'banana']:
-...   print fruit, 
+...    print fruit, 
 ... 
 apple orange banana
 >>> for i in range(5):
-...   print i,
+...    print i,
 ... 
 0 1 2 3 4 
 
@@ -262,13 +260,13 @@ While and For loops can skip steps (continue) or terminate early (break).
 
 \begin{verbatim}
 >>> for i in range(10):
-...   if i%2: continue
-...   print i, 
+...    if i%2: continue
+...    print i, 
 ... 
 0 2 4 6 8
 >>> for i in range(10):
-...   if i>5: break
-...   print i,
+...    if i>5: break
+...    print i,
 ... 
 0 1 2 3 4 5
 \end{verbatim}
@@ -282,8 +280,8 @@ While and For loops can skip steps (continue) or terminate early (break).
 In the previous example:
 \begin{verbatim}
 >>> for i in range(10):
-...   if i>5: break
-...   print i,
+...    if i>5: break
+...    print i,
 \end{verbatim}
 
 How did we know that \textit{print i} was part of the loop?
@@ -292,9 +290,8 @@ Many programming languages use \{ \} or Begin End to delineate blocks of
 code to treat as a single unit.
 
 Python uses white space (blanks).  To define a block of code, indent the block.
-By convention and for readability, indent 3 spaces.
-
-Many editors will do this for you.
+By convention and for readability, indent a consistent number, 
+usually 3 or 4 spaces.  Many editors will do this for you.
 
 \end{frame}
 
@@ -302,7 +299,14 @@ Many editors will do this for you.
 \begin{frame}[fragile]
 \frametitle{Functions}
 
-TODO
+Functions allow you to write code once and use it many times.
+
+def area(w, h):
+    return w*h
+
+>>> area(3, 4)
+12
+
 
 \end{frame}
 
@@ -355,9 +359,9 @@ fp=open(sys.argv[1])
 hdr=fp.readline().strip()
 print hdr
 for l in fp:
-    flds=l.strip().split(',')
-    flds[4]=flds[4][:-3]
-    print ','.join(flds)
+   flds=l.strip().split(',')
+   flds[4]=flds[4][:-3]
+   print ','.join(flds)
 \end{verbatim}
 \end{frame}
 
@@ -470,9 +474,9 @@ fp=open(sys.argv[1])
 hdr=fp.readline().strip()
 print hdr
 for l in fp:
-    flds=l.strip().split(',')
-    flds[4]=flds[4][:-3]
-    print ','.join(flds)
+   flds=l.strip().split(',')
+   flds[4]=flds[4][:-3]
+   print ','.join(flds)
 \end{verbatim}
 
 
@@ -495,10 +499,10 @@ fp=open(sys.argv[1])
 hdr=fp.readline().strip()
 print hdr
 for l in fp:
-    if l[3] != 'human': continue
-    flds=l.strip().split(',')
-    flds[4]=flds[4][:-3]
-    print ','.join(flds)
+   if l[3] != 'human': continue
+   flds=l.strip().split(',')
+   flds[4]=flds[4][:-3]
+   print ','.join(flds)
 \end{verbatim}
 \end{frame}
 
@@ -512,12 +516,12 @@ We could operate on multiple input files
 import sys
 wrotehdr=False
 for f in sys.argv[1:]:
-  fp=open(f)
-  hdr=fp.readline().strip()
-  if not wrotehdr:
-    print hdr
-    wrotehdr=True
-    for l in fp:
+   fp=open(f)
+   hdr=fp.readline().strip()
+   if not wrotehdr:
+      print hdr
+      wrotehdr=True
+   for l in fp:
       if l[3] != 'human': continue
       flds=l.strip().split(',')
       flds[4]=flds[4][:-3]
@@ -526,5 +530,156 @@ for f in sys.argv[1:]:
 \end{frame}
 
 
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Directory Walk Example}
+
+Imagine you have a directory tree with many subdirectories.  In
+those directories are files named *.fastq.qp.  You want to:
+\begin{itemize}
+\item find them
+\item convert them to fastq using a program
+\item delete them if the conversion was successful
+\end{itemize}
+
+In this example, we'll demonstrate:
+
+\begin{itemize}
+\item traversing an entire directory tree
+\item executing a program on files in that tree
+\item testing for successful program execution
+\end{itemize}
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Directory Walk Example (cont)}
+
+os.walk takes a directory and visits every subdirectory below it.
+It returns a list of files and subdirectories at each subdirectory:
+
+walk.py:
+\begin{verbatim}
+import os, sys
+start=sys.argv[1]
+for d, subdirs, files in os.walk(start):
+    print d, subdirs, files
+
+$ python walk.py .
+. ['d1'] ['python.tex', 'outline.txt~', 'walk.py', 'python.pdf', 'python.snm', 'python.nav', 'python.vrb', 'python.out', '#python.tex#', 'sampleslide.tex', 'walk.py~', 'python.log', 'python.toc', 'python.aux', 'outline.txt', '.#python.tex', 'Makefile']
+./d1 ['d2'] ['f1']
+./d1/d2 ['d3'] ['f2']
+./d1/d2/d3 [] ['f3']
+
+\end{verbatim}
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Directory Walk Example (cont)}
+
+Lets use it to find all files named ``*.fastq.qp'', and run quip -d
+on that file.  We'll check that everything seems good, then delete the qp file.
+
+The command is: quip -d file.fastq.qp > file.fastq 
+
+\begin{verbatim}
+import os, sys, subprocess
+start=sys.argv[1]
+for d, subdirs, files in os.walk(start):
+    for f in files:
+        if f.endswith('.fastq.qp'):
+            fp=d+'/'+f
+            nfp=fp.replace('fastq.qp', '.fastq')
+            cmd='quip -d '+fp+' > '+nfp
+            ret=subprocess.call(cmd, shell=True)
+            if ret: # True means failed
+                print "Failed on ", fp
+                break
+            else:
+                if os.path.exists(nfp):
+                    os.remove(fp)
+\end{verbatim}
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Tangent 1}
+
+We cut some corners in the last example. 
+
+\verb+nfp=fp.replace('fastq.qp', '.fastq')+
+
+It's unlikely, but what if fastq.qp appeared in the middle of the file name?
+
+Python has a wonderful regular expression module, re.
+
+\verb+nfp=re.sub(r'.fastq.qp$', '.fastq', fp)+
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Tangent 2}
+
+\begin{verbatim}
+fp=d+'/'+f
+nfp=fp.replace('fastq.qp', '.fastq')
+cmd='quip -d '+fp+' > '+nfp
+\end{verbatim}
+
+Formatting using string concatenation is very clunky.  Python has a 
+nice string formating operator that derives from C.
+
+\begin{verbatim}
+cmd='quip -d %s > %s' % (fp, nfp)
+\end{verbatim}
+
+\%s expects a string. \%f float, \%d integer.  Tabs are \textbackslash t.
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Some Features You Should Know About}
+
+\begin{itemize}
+\item default and named function parameters
+\item garbage collection
+\item objects
+\item argparse
+\item tuples
+\end{itemize}
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Some Python Modules You Should Know About}
+
+\begin{itemize}
+\item glob: does the same as * in the shell
+\item argparse: handles complicated invocation flags and parameters
+\item re: regular expressions (we saw a bit)
+\item os: lots of useful utilities
+\item struct: ways to handle binary data cleanly
+\item cPickle: support for serialization
+\item logging: powerful logging utility
+\end{itemize}
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Python Resources we like}
+
+\begin{itemize}
+\item Python in a Nutshell, Alex Martelli, O'Reilly
+\item Python Cookbook, Alex Martelli, O'Reilly
+\item https://docs.python.org/2.7/tutorial
+\end{itemize}
+
+\end{frame}
 
 \end{document}
