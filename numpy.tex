@@ -1,0 +1,91 @@
+\documentclass[10pt]{beamer}
+\usetheme{Singapore}
+\usecolortheme{default}
+\usecolortheme{orchid}
+\useoutertheme{infolines}
+\useinnertheme[shadow=true]{rounded}
+
+\newcommand\smallfont{\fontsize{8pt}{7.2}\selectfont}
+
+\usepackage{multimedia}
+
+\title{Introduction to NumPy}
+\titlegraphic{\includegraphics[height=2.0cm]{../logo.png}}
+\logo{\includegraphics[height=0.5cm]{../logo.png}}
+\author{{Stephen Weston} \and {Robert Bjornson}}
+\institute[Yale]{
+  Yale Center for Research Computing \\
+  Yale University
+}
+\date{April 2016}
+\begin{document}
+
+
+%----------- titlepage ----------------------------------------------%
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}
+\frametitle{Why NumPy?}
+
+\begin{itemize}
+\item Python doesn't natively support multidimensional arrays
+\item Comes in the standard Anaconda distribution
+\item Used by many other packages such as SciPy
+\end{itemize}
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Creating arrays}
+
+\begin{verbatim}
+import numpy as np
+i = np.array(range(6))
+j = np.arange(6)
+np.array_equal(i, j)
+
+x = np.arange(6, dtype=np.float64)
+y = np.array([[0.0, 1.0, 2.0], [3.0, 4.0, 5.0]])
+y.dtype
+y.shape
+x.shape = y.shape
+x == y
+np.array_equal(x, y)
+\end{verbatim}
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Reading and writing arrays using text files}
+
+\begin{verbatim}
+import numpy as np
+x = np.array([[0.0, 1.0, 2.0], [3.0, 4.0, 5.0]])
+x.tofile('array.csv', sep=',')
+# !cat array.csv
+
+y = np.loadtxt('array.csv', delimiter=',')
+y.shape = x.shape
+np.array_equal(x, y)
+\end{verbatim}
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Reading and writing arrays using binary files}
+
+\begin{verbatim}
+import numpy as np
+x = np.array([[0.0, 1.0, 2.0], [3.0, 4.0, 5.0]])
+x.tofile('array.bin')
+
+y = np.fromfile('array.bin', dtype=np.float64)
+y.shape = x.shape
+np.array_equal(x, y)
+\end{verbatim}
+\end{frame}
+
+\end{document}
