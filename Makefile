@@ -1,4 +1,4 @@
-all: python.pdf numpy.pdf
+all: python.pdf numpy.pdf anaconda.pdf
 
 python.pdf: python.tex
 	pdflatex python.tex
@@ -8,6 +8,10 @@ python.pdf: python.tex
 numpy.pdf: numpy.tex
 	pdflatex numpy.tex
 	pdflatex numpy.tex
+
+anaconda.pdf: anaconda.tex
+	pdflatex anaconda.tex
+	pdflatex anaconda.tex
 
 clean:
 	-@/bin/rm -f *.aux *.log *.out *.nav *.toc *.vrb *.snm
