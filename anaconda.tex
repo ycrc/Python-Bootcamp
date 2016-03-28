@@ -1,0 +1,56 @@
+\documentclass[10pt]{beamer}
+\usetheme{Singapore}
+\usecolortheme{default}
+\usecolortheme{orchid}
+\useoutertheme{infolines}
+\useinnertheme[shadow=true]{rounded}
+
+\newcommand\smallfont{\fontsize{8pt}{7.2}\selectfont}
+
+\usepackage{multimedia}
+
+\title{Introduction to Anaconda}
+\titlegraphic{\includegraphics[height=2.0cm]{../logo.png}}
+\logo{\includegraphics[height=0.5cm]{../logo.png}}
+\author{{Stephen Weston} \and {Robert Bjornson}}
+\institute[Yale]{
+  Yale Center for Research Computing \\
+  Yale University
+}
+\date{April 2016}
+\begin{document}
+
+
+%----------- titlepage ----------------------------------------------%
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}
+\frametitle{Why Anaconda?}
+
+\begin{itemize}
+\item It comes with more than 400 packages for science and data analysis
+\item NumPy, SciPy, Matplotlib, Pandas, IPython, Cython
+\item Non-Python packages: curl, gcc, libboost
+\item Available for Mac, Windows and Linux
+\item Includes ``conda'', a platform independent package manager
+\item Doesn't require administrative privilege to install packages
+\item Provides "virtual environment" capabilities
+\item Compatible with pip and PyPI
+\item Many channels exist that support additional packages
+\end{itemize}
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}
+\frametitle{Installing Anaconda}
+
+\begin{itemize}
+\item Download installer from \url{https://www.continuum.io/download}
+\item Execute the installer and follow the instructions
+\end{itemize}
+\end{frame}
+
+\end{document}
