@@ -5,9 +5,44 @@
 \useoutertheme{infolines}
 \useinnertheme[shadow=true]{rounded}
 
+\newcommand\tinyfont{\fontsize{4pt}{7.2}\selectfont}
 \newcommand\smallfont{\fontsize{8pt}{7.2}\selectfont}
+\newcommand\regfont{\fontsize{10pt}{7.2}\selectfont}
 
 \usepackage{multimedia}
+\usepackage{listings}
+\usepackage{courier}
+
+\usepackage{color}
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+%basicstyle=\footnotesize,
+\lstdefinestyle{mystyle}{
+    basicstyle=\ttfamily,
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=none,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
+
+%\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
 
 \title{Introduction to Python}
 \titlegraphic{\includegraphics[height=2.0cm]{../logo.png}}
@@ -58,6 +93,7 @@
 
 \begin{itemize}
 \item Free, portable, easy to learn
+\item Wildly popular, huge and growing community
 \item Intuitive, easy to learn
 \item Ideal for rapid prototyping but also for large applications
 \item Reasonably efficient
@@ -73,7 +109,7 @@
 \item Automate repetitive tasks
 \item Compute statistics
 \item Build processing pipelines
-\item Simple web applications
+\item Build simple web applications
 \item ...
 \end{itemize}
 \end{frame}
@@ -99,7 +135,7 @@ Note:
 \item variables do not need to be declared or typed
 \item integers and floats can be used together
 \item the same variable can hold different types
-\item lines can be broken using \
+\item lines can be broken using \textbackslash
 \item python supports arbitrary length integer numbers
 \end{itemize}
 \end{frame}
@@ -125,6 +161,27 @@ Lists are like arrays in other languages.
 [1, 2, 3.145, 'pi', 5, 6, 7, 8, 9, 10]
 >>> len(l)
 10
+\end{verbatim}
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Lists continued}
+
+Lists are more flexible than arrays, e.g.:
+\begin{itemize}
+\item Insert or append new elements
+\item remove elements
+\item nest lists
+\item combine values of different types into lists
+\end{itemize}
+
+\begin{verbatim}
+>>> l=[1,2,3,4,5,6,7,8,9]
+>>> l[3:6]=['three to six']
+>>> l
+[1, 2, 3, 'three to six', 7, 8, 9]
 \end{verbatim}
 
 \end{frame}
@@ -301,12 +358,16 @@ usually 3 or 4 spaces.  Many editors will do this for you.
 
 Functions allow you to write code once and use it many times.
 
+\begin{verbatim}
 def area(w, h):
     return w*h
 
 >>> area(3, 4)
 12
+\end{verbatim}
 
+Some languages differentiate between functions and procedures.  In python, everything is a function.
+Procedures are functions that return no values.
 
 \end{frame}
 
@@ -493,7 +554,7 @@ $ python fixfile.py badfile.txt > fixedfile.txt
 
 We could skip certain lines
 
-\begin{verbatim}
+\begin{lstlisting}[language=python]
 import sys
 fp=open(sys.argv[1])
 hdr=fp.readline().strip()
@@ -503,7 +564,7 @@ for l in fp:
    flds=l.strip().split(',')
    flds[4]=flds[4][:-3]
    print ','.join(flds)
-\end{verbatim}
+\end{lstlisting}
 \end{frame}
 
 %----------- slide --------------------------------------------------%
@@ -554,12 +615,31 @@ In this example, we'll demonstrate:
 
 %----------- slide --------------------------------------------------%
 \begin{frame}[fragile]
+\frametitle{Directory walk example (cont)}
+\smallfont
+In pseudocode we might write:
+\begin{verbatim}
+ for each directory
+   get a list of files in that directory
+   for each file that ends with .fastq.qp
+     create a new file name without .qp
+     create a cmd to do the conversion
+     run that command and check for success
+     if success, delete the original
+     if failure, stop
+\end{verbatim}
+
+The command is: quip -d file.fastq.qp \textgreater file.fastq 
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
 \frametitle{Directory Walk Example (cont)}
 
 os.walk takes a directory and visits every subdirectory below it.
 It returns a list of files and subdirectories at each subdirectory:
 
-walk.py:
 \begin{verbatim}
 import os, sys
 start=sys.argv[1]
@@ -578,11 +658,6 @@ $ python walk.py .
 %----------- slide --------------------------------------------------%
 \begin{frame}[fragile]
 \frametitle{Directory Walk Example (cont)}
-
-Lets use it to find all files named ``*.fastq.qp'', and run quip -d
-on that file.  We'll check that everything seems good, then delete the qp file.
-
-The command is: quip -d file.fastq.qp > file.fastq 
 
 \begin{verbatim}
 import os, sys, subprocess
@@ -608,13 +683,15 @@ for d, subdirs, files in os.walk(start):
 \frametitle{Tangent 1}
 
 We cut some corners in the last example. 
+\vspace{5mm}
 
 \verb+nfp=fp.replace('fastq.qp', '.fastq')+
 
-It's unlikely, but what if fastq.qp appeared in the middle of the file name?
-
+\vspace{5mm}
+It's unlikely, but what if fastq.qp appeared in the middle of the file name?\\
 Python has a wonderful regular expression module, re.
 
+\vspace{5mm}
 \verb+nfp=re.sub(r'.fastq.qp$', '.fastq', fp)+
 
 \end{frame}
@@ -642,13 +719,238 @@ cmd='quip -d %s > %s' % (fp, nfp)
 
 %----------- slide --------------------------------------------------%
 \begin{frame}[fragile]
+\frametitle{Dictionary Example}
+
+Dictionaries and sorting are two of the most useful tools in Python.  
+Dictionaries associate names with data, and allow quick retrieval by name.
+By nesting dictionaries, powerful lookups are easy.
+
+In this example, we'll:
+
+\begin{itemize}
+\item create a nested set of dictionaries
+\item load them with data
+\item retrieve specific data
+\item sort data
+\end{itemize}
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Dictionary Example (cont)}
+
+We have a file describing the locations of genes:
+
+\tinyfont
+\begin{verbatim}
+uc001aaa.3      chr1    +       11873   14409   11873   11873   3       11873,12612,13220,      12227,12721,14409,              uc001aaa.3
+uc010nxr.1      chr1    +       11873   14409   11873   11873   3       11873,12645,13220,      12227,12697,14409,              uc010nxr.1
+uc010nxq.1      chr1    +       11873   14409   12189   13639   3       11873,12594,13402,      12227,12721,14409,      B7ZGX9  uc010nxq.1
+uc009vis.3      chr1    -       14361   16765   14361   14361   4       14361,14969,15795,16606,        14829,15038,15942,16765,                uc009vis.3
+uc009vit.3      chr1    -       14361   19759   14361   14361   9       14361,14969,15795,16606,16857,17232,17914,18267,18912,  14829,15038,15947,16765,17055,17742,18061,18366,19759,          uc009vit.3
+...
+\end{verbatim}
+
+\regfont
+We have another file with dna sequences, and where they mapped:
+
+\tinyfont
+\begin{verbatim}
+HWI-ST830:206:D2411ACXX:1:1114:6515:89952       401     chr1    10536   0       76M     =       222691803       222681343       TACCACCGAAATCTGTGCAGAGGAGAACGCAGCTCCGCCCTCGCGGT
+GCTCTCCGGGTCTGTGCTGAGGAGAACGC   ##B<2DDDDDDDCCDCC@CC@C@282BBCCDDBDDFHIJJJIGJIIGIGFIGJJIJJJJJJJJHGGHHFFFFDCC@    XA:i:1  MD:Z:24C51      NM:i:1  XP:Z:chr1 222691803 76M NH:i:6CC:Z:=   CP:i:10536      HI:i:0
+HWI-ST830:206:D2411ACXX:1:1114:6515:89952       177     chr1    10536   0       76M     chr3    197908818       0       TACCACCGAAATCTGTGCAGAGGAGAACGCAGCTCCGCCCTCGCGGTGCTCTCCG
+GGTCTGTGCTGAGGAGAACGC   ##B<2DDDDDDDCCDCC@CC@C@282BBCCDDBDDFHIJJJIGJIIGIGFIGJJIJJJJJJJJHGGHHFFFFDCC@    XA:i:1  MD:Z:24C51      NM:i:1  XP:Z:chr3 197908818 76M NH:i:6  CC:Z:=CP:i:10536       HI:i:1
+HWI-ST830:206:D2411ACXX:1:1114:6515:89952       401     chr1    10536   0       76M     chr4    120370019       0       TACCACCGAAATCTGTGCAGAGGAGAACGCAGCTCCGCCCTCGCGGTGCTCTCCG
+GGTCTGTGCTGAGGAGAACGC   ##B<2DDDDDDDCCDCC@CC@C@282BBCCDDBDDFHIJJJIGJIIGIGFIGJJIJJJJJJJJHGGHHFFFFDCC@    XA:i:1  MD:Z:24C51      NM:i:1  XP:Z:chr4 120370019 76M NH:i:6  CC:Z:=CP:i:10536       HI:i:2
+HWI-ST830:206:D2411ACXX:1:1114:6515:89952       433     chr1    10536   0       76M     chr9    141135264       0       TACCACCGAAATCTGTGCAGAGGAGAACGCAGCTCCGCCCTCGCGGTGCTCTCCG
+GGTCTGTGCTGAGGAGAACGC   ##B<2DDDDDDDCCDCC@CC@C@282BBCCDDBDDFHIJJJIGJIIGIGFIGJJIJJJJJJJJHGGHHFFFFDCC@    XA:i:1  MD:Z:24C51      NM:i:1  XP:Z:chr9 141135264 76M NH:i:6  CC:Z:=CP:i:10536       HI:i:3
+...
+\end{verbatim}
+
+\regfont
+
+We'd like to be able to quickly determine the genes overlapped by a dna sequence.
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Dictionary Example (cont)}
+
+First, we need a simple way to determine if two intervals overlap.  
+intervaltree is a python module that makes that easy.
+
+\smallfont
+\begin{verbatim}
+>>> from intervaltree import IntervalTree
+>>> it=IntervalTree()
+>>> it[4:7]='4-7'
+>>> it[5:10]='5-10'
+>>> it[1:11]='1-11'
+>>> it
+IntervalTree([Interval(1, 11, '1-11'), Interval(4, 7, '4-7'), Interval(5, 10, '5-10')])
+>>> it[7]
+set([Interval(1, 11, '1-11'), Interval(5, 10, '5-10')])
+>>> it[6:8]
+set([Interval(4, 7, '4-7'), Interval(1, 11, '1-11'), Interval(5, 10, '5-10')]) 
+\end{verbatim}
+
+We'll use interval trees, one for each chromosome, to store an interval for each gene.
+Then we'll find the overlaps for mapped dna sequences.
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Dictionary Example (cont)}
+
+Here is a picture of what we want:
+
+\smallfont
+\begin{verbatim}
+{'chr1': IntervalTree([Interval(1000, 1100, 'GeneA'), 
+                       Interval(2000, 2100, 'GeneB'), ...
+ 'chr2': IntervalTree([Interval(4000, 5100, 'GeneC'), 
+                       Interval(7000, 8100, 'GeneD'), ...
+ 'chr3':
+ ...
+}
+\end{verbatim}
+
+\end{frame}
+
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Dictionary Example (cont)}
+\smallfont
+Again, in pseudocode:
+\begin{verbatim}
+ open the gene file
+ for each line in the file
+    get gene name, chrom, start, end
+    initialize an interval object for the chrom, if needed
+    add the interval, with the gene name as the data
+
+ open the dna sequence file
+ for each line in the file:
+   get chrom, mapped position, and seq length
+   look up the interval tree for that chrom
+   search the interval tree for overlaps [pos, pos+len]
+   print out the gene names
+
+\end{verbatim}
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Dictionary Example (cont)}
+
+\smallfont
+\begin{verbatim}
+import sys
+from intervaltree import IntervalTree
+
+print 'initializing'
+genefinder={}
+for line in open(sys.argv[1]):
+    genename, chrm, strand, start, end = line.split()[0:5]
+    if not chrm in genefinder:
+        genefinder[chrm]=IntervalTree()
+    genefinder[chrm][int(start):int(end)]=genename
+
+print "reading sequences"
+for line in open(sys.argv[2]):
+    tag, flag, chrm, pos, mapq, cigar, rnext, 
+        pnext, tlen, seq, qual = line.split()[0:11]
+    genes=genefinder[chrm][int(pos):int(pos)+len(seq)]
+    if genes:
+        print tag
+        for gene in genes:
+            print '\t',gene.data
+
+\end{verbatim}
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Dictionary Example (cont)}
+
+
+\smallfont
+\begin{verbatim}
+rdb9@bdn:ruddle2:~ $ python dict_example.py knownGene.txt hits.sam
+initializing
+reading sequences
+HWI-ST0831:196:C1YCJACXX:2:2211:2571:23347
+        uc004cqm.3
+        uc010nda.3
+        uc004cqn.3
+HWI-ST0831:196:C1YCJACXX:2:2114:9661:90395
+        uc003zbm.3
+HWI-ST0831:196:C1YCJACXX:2:2302:16215:62515
+        uc003pvj.3
+        uc003pvh.3
+        uc010kdy.1
+\end{verbatim}
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Dictionary Example (cont)}
+
+A more realistic example illustrating some useful elements:
+\begin{itemize}
+\item object encapsulation
+\item defaultdict from Collections
+\end{itemize}
+
+\smallfont
+\begin{verbatim}
+import sys
+from intervaltree import IntervalTree
+from collections import defaultdict
+
+class ChrRec(object):
+    def __init__(self):
+        self.it=IntervalTree() # holds gene intervals                                                                                                                                                                       self.genes=defaultdict(list) # holds a list of sequences for each gene                                                                                                                                          def addGene(self, genename, genestart, geneend):
+        self.it.addi(genestart, geneend, genename)
+    def getGenes(self, readstart, readend):
+        genes=self.it.search(readstart, readend)
+        return [gene.data for gene in genes]
+    def insertSeq(self, start, end, seq):
+        for genename in self.getGenes(start, end):
+            self.genes[genename].append(seq)
+    def getSeqs(self, genename):
+        return self.genes[genename]
+
+print "initializing"
+genefinder=defaultdict(ChrRec)
+for line in open(sys.argv[1]):
+    genename, chrm, strand, start, end = line.split()[0:5]
+    genefinder[chrm].addGene(genename, int(start), int(end))
+
+print "reading sequences"
+for line in open(sys.argv[2]):
+    tag, flag, chrm, pos, mapq, cigar, rnext, \
+    pnext, tlen, seq, qual = rd = line.split()[0:11]
+    genefinder[chrm].insertSeq(int(pos), int(pos)+len(seq), rd)
+
+print genefinder['chr4'].genes
+
+\end{verbatim}
+\end{frame}
+
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
 \frametitle{Some Features You Should Know About}
 
 \begin{itemize}
 \item default and named function parameters
 \item garbage collection
 \item objects
-\item argparse
 \item tuples
 \end{itemize}
 
@@ -660,6 +962,7 @@ cmd='quip -d %s > %s' % (fp, nfp)
 
 \begin{itemize}
 \item glob: does the same as * in the shell
+\item subprocess: running commands or programs from python
 \item argparse: handles complicated invocation flags and parameters
 \item re: regular expressions (we saw a bit)
 \item os: lots of useful utilities
@@ -667,6 +970,10 @@ cmd='quip -d %s > %s' % (fp, nfp)
 \item cPickle: support for serialization
 \item logging: powerful logging utility
 \end{itemize}
+
+\vspace{5mm}
+Lots more here:\\
+https://docs.python.org/2/py-modindex.html
 
 \end{frame}
 
