@@ -70,7 +70,7 @@
 \item Email us directly:
 \begin{itemize}
 \item Stephen.weston@yale.edu, Office hours at CSSSI on Wednesday morning from 9 to 12 or by appointment
-\item Robert.bjornson@yale.edu, Office hour by appointment
+\item Robert.bjornson@yale.edu, By appointment
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -80,6 +80,7 @@
 \frametitle{What is the Yale Center for Research Computing?}
 
 \begin{itemize}
+\item 160 St. Ronan st, at the corner of Edwards and St. Ronan.
 \item Newly created Center to support your research computing needs.
 \item Applications specialists and system engineers.
 \item Available to consult with and educate users
@@ -96,7 +97,7 @@
 \item Wildly popular, huge and growing community
 \item Intuitive, easy to learn
 \item Ideal for rapid prototyping but also for large applications
-\item Reasonably efficient
+\item Very efficient to write, reasonably efficient to run
 \item Numerous extensions (modules)
 \end{itemize}
 \end{frame}
@@ -112,6 +113,8 @@
 \item Build simple web applications
 \item ...
 \end{itemize}
+
+You can use Python instead of bash, Java, or C. 
 \end{frame}
 
 %----------- slide --------------------------------------------------%
@@ -119,21 +122,21 @@
 \frametitle{Basic Python Types and Assignment}
 
 \begin{verbatim}
-radius=2
-pi=3.14
-diam=radius*2
-area=pi*(radius**2)
-title="fun with strings"
-pi="cherry"
-longnum=31415926535897932384626433832795028841971693993751058\
+>>> radius=2
+>>> pi=3.14
+>>> diam=radius*2
+>>> area=pi*(radius**2)
+>>> title="fun with strings"
+>>> pi="cherry"
+>>> longnum=31415926535897932384626433832795028841971693993751058\
 2097494459230781640628620899862803482534211706798214808651
-delicious=True
+>>> delicious=True
 \end{verbatim}
 
 Note:
 \begin{itemize}
 \item variables do not need to be declared or typed
-\item integers and floats can be used together
+\item integers and floating points can be used together
 \item the same variable can hold different types
 \item lines can be broken using \textbackslash
 \item python supports arbitrary length integer numbers
@@ -179,6 +182,8 @@ Lists are more flexible than arrays, e.g.:
 
 \begin{verbatim}
 >>> l=[1,2,3,4,5,6,7,8,9]
+>>> l+[11,12,13]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13]
 >>> l[3:6]=['three to six']
 >>> l
 [1, 2, 3, 'three to six', 7, 8, 9]
@@ -229,6 +234,8 @@ Dicts are like hash tables in other languages.
 1
 >>> coins.keys()
 ['quarter', 'nickle', 'penny', 'dime']
+>>> coins.values()
+[25, 5, 1, 10]
 >>> coins['half']=50
 >>> coins
 {'quarter': 25, 'nickle': 5, 'penny': 1, 'half': 50, 'dime': 10}
@@ -311,6 +318,29 @@ apple orange banana
 
 %----------- slide --------------------------------------------------%
 \begin{frame}[fragile]
+\frametitle{Using for loops and dicts}
+If you loop over a dict, you'll get just keys.  Use iteritems() for keys and values.
+
+\begin{verbatim}
+>>> for denom in coins:  print denom
+... 
+quarter
+nickle
+penny
+dime
+>>> for denom, value in coins.iteritems():  print denom, value
+... 
+quarter 25
+nickle 5
+penny 1
+dime 10
+
+\end{verbatim}
+\end{frame}
+
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
 \frametitle{Control Flow Statements: altering loops}
 
 While and For loops can skip steps (continue) or terminate early (break).
@@ -364,6 +394,8 @@ Functions allow you to write code once and use it many times.
 
 >>> area(3, 4)
 12
+>>> area(5, 10)
+50
 \end{verbatim}
 
 Some languages differentiate between functions and procedures.  In python, everything is a function.
@@ -377,6 +409,7 @@ Procedures are functions that return no values.
 
 Task: given a file of hundreds or thousands of lines:
 
+\smallfont
 \begin{verbatim}
 FCID,Lane,Sample_ID,SampleRef,index,Description,Control,Recipe,...
 160212,1,A1,human,TAAGGCGA-TAGATCGC,None,N,Eland-rna,Mei,Jon_mix10
@@ -438,12 +471,19 @@ fp=open(sys.argv[1])
 \end{verbatim}
 
 Sys is a system module with a number of useful methods.  
+\vspace{2mm}
 
-sys.argv() returns the command line as an array of strings.  Argv[0] is the command, argv[1] is the first
+sys.argv() returns the command line as an array of strings.  
+\vspace{2mm}
+
+sys.argv[0] is the command, sys.argv[1] is the first
 argument, etc.
+\vspace{2mm}
 
-Open takes a filename, and returns a ``file pointer''.  We'll use that
-to read from the file.
+Open takes a filename, and returns a ``file pointer''.  
+\vspace{2mm}
+
+We'll use that to read from the file.
 
 \end{frame}
 
@@ -459,7 +499,12 @@ print hdr
 \end{verbatim}
 
 We'll call readline() on the file pointer to get a single line from the file.
-(the header line).  Strip() removes the return at the end of the line.
+(the header line).  
+\vspace{2mm}
+
+Strip() removes the return at the end of the line.
+\vspace{2mm}
+
 Then we print it.
 
 \end{frame}
@@ -478,9 +523,14 @@ for l in fp:
   ...
 \end{verbatim}
 
-A file pointer is a special object called an iterator.  Instead of 
-explicitly calling readline() for each line, we can just loop on the file 
-pointer, getting one line each time. Since we already read the header, we 
+A file pointer is an example of an iterator.  
+\vspace{2mm}
+
+Instead of explicitly calling readline() for each line, we can just loop on the file 
+pointer, getting one line each time. 
+\vspace{2mm}
+
+Since we already read the header, we 
 won't get that line.
 
 \end{frame}
@@ -498,8 +548,14 @@ won't get that line.
     flds[4]=flds[4][:-3]
 \end{verbatim}
 
-Just like before, we strip the return from the line.  We split it into
-individual elements where we find commas.  The 5th field is referenced by
+Just like before, we strip the return from the line.  
+\vspace{2mm}
+
+We split it into
+individual elements where we find commas.  
+\vspace{2mm}
+
+The 5th field is referenced by
 flds[4], since python starts indexing with 0.  [:-3] takes all characters
 of the string until the last 3.
   
@@ -554,7 +610,7 @@ $ python fixfile.py badfile.txt > fixedfile.txt
 
 We could skip certain lines
 
-\begin{lstlisting}[language=python]
+\begin{verbatim}
 import sys
 fp=open(sys.argv[1])
 hdr=fp.readline().strip()
@@ -564,7 +620,7 @@ for l in fp:
    flds=l.strip().split(',')
    flds[4]=flds[4][:-3]
    print ','.join(flds)
-\end{lstlisting}
+\end{verbatim}
 \end{frame}
 
 %----------- slide --------------------------------------------------%
@@ -572,6 +628,9 @@ for l in fp:
 \frametitle{Some variations on the theme}
 
 We could operate on multiple input files
+\begin{verbatim}
+$ python fixfile.py badfile1.txt badfile2.txt badfile3.txt > fixedfile.txt
+\end{verbatim}
 
 \begin{verbatim}
 import sys
@@ -595,8 +654,10 @@ for f in sys.argv[1:]:
 \begin{frame}[fragile]
 \frametitle{Directory Walk Example}
 
-Imagine you have a directory tree with many subdirectories.  In
-those directories are files named *.fastq.qp.  You want to:
+Imagine you have a directory tree with many subdirectories.  
+\vspace{2mm}
+
+In those directories are files named *.fastq.qp.  You want to:
 \begin{itemize}
 \item find them
 \item convert them to fastq using a program
@@ -623,13 +684,13 @@ In pseudocode we might write:
    get a list of files in that directory
    for each file that ends with .fastq.qp
      create a new file name without .qp
-     create a cmd to do the conversion
+     create a command to do the conversion
      run that command and check for success
      if success, delete the original
      if failure, stop
 \end{verbatim}
 
-The command is: quip -d file.fastq.qp \textgreater file.fastq 
+The conversion command is: quip -d file.fastq.qp \textgreater file.fastq 
 
 \end{frame}
 
@@ -637,9 +698,18 @@ The command is: quip -d file.fastq.qp \textgreater file.fastq
 \begin{frame}[fragile]
 \frametitle{Directory Walk Example (cont)}
 
-os.walk takes a directory and visits every subdirectory below it.
-It returns a list of files and subdirectories at each subdirectory:
+We need a way to traverse all the files and directories.
+\vspace{2mm}
 
+os.walk(dir) starts at dir and visits every subdirectory below it.
+\vspace{2mm}
+
+It returns a list of files and subdirectories at each subdirectory. 
+\vspace{2mm}
+
+Here is a sample script walk.py, that uses os.walk()
+
+\smallfont
 \begin{verbatim}
 import os, sys
 start=sys.argv[1]
@@ -702,7 +772,7 @@ Python has a wonderful regular expression module, re.
 
 \begin{verbatim}
 fp=d+'/'+f
-nfp=fp.replace('fastq.qp', '.fastq')
+nfp=re.sub(r'.fastq.qp$', '.fastq', fp)+
 cmd='quip -d '+fp+' > '+nfp
 \end{verbatim}
 
@@ -722,8 +792,13 @@ cmd='quip -d %s > %s' % (fp, nfp)
 \frametitle{Dictionary Example}
 
 Dictionaries and sorting are two of the most useful tools in Python.  
+\vspace{2mm}
+
 Dictionaries associate names with data, and allow quick retrieval by name.
+\vspace{2mm}
+
 By nesting dictionaries, powerful lookups are easy.
+\vspace{2mm}
 
 In this example, we'll:
 
@@ -779,6 +854,8 @@ We'd like to be able to quickly determine the genes overlapped by a dna sequence
 \frametitle{Dictionary Example (cont)}
 
 First, we need a simple way to determine if two intervals overlap.  
+\vspace{2mm}
+
 intervaltree is a python module that makes that easy.
 
 \smallfont
@@ -797,6 +874,8 @@ set([Interval(4, 7, '4-7'), Interval(1, 11, '1-11'), Interval(5, 10, '5-10')])
 \end{verbatim}
 
 We'll use interval trees, one for each chromosome, to store an interval for each gene.
+\vspace{2mm}
+
 Then we'll find the overlaps for mapped dna sequences.
 
 \end{frame}
@@ -827,12 +906,14 @@ Here is a picture of what we want:
 \smallfont
 Again, in pseudocode:
 \begin{verbatim}
+ # create the interval trees
  open the gene file
  for each line in the file
     get gene name, chrom, start, end
     initialize an interval object for the chrom, if needed
     add the interval, with the gene name as the data
 
+ # use the interval trees to find overlapped genes
  open the dna sequence file
  for each line in the file:
    get chrom, mapped position, and seq length
@@ -852,7 +933,7 @@ Again, in pseudocode:
 import sys
 from intervaltree import IntervalTree
 
-print 'initializing'
+print "initializing"
 genefinder={}
 for line in open(sys.argv[1]):
     genename, chrm, strand, start, end = line.split()[0:5]
@@ -904,6 +985,7 @@ A more realistic example illustrating some useful elements:
 \begin{itemize}
 \item object encapsulation
 \item defaultdict from Collections
+\item use of main block
 \end{itemize}
 
 \smallfont
@@ -914,7 +996,9 @@ from collections import defaultdict
 
 class ChrRec(object):
     def __init__(self):
-        self.it=IntervalTree() # holds gene intervals                                                                                                                                                                       self.genes=defaultdict(list) # holds a list of sequences for each gene                                                                                                                                          def addGene(self, genename, genestart, geneend):
+        self.it=IntervalTree() # holds gene intervals
+        self.genes=defaultdict(list) # holds a list of sequences for each gene
+    def addGene(sel, genename, genestart, geneend):
         self.it.addi(genestart, geneend, genename)
     def getGenes(self, readstart, readend):
         genes=self.it.search(readstart, readend)
@@ -925,6 +1009,15 @@ class ChrRec(object):
     def getSeqs(self, genename):
         return self.genes[genename]
 
+\end{verbatim}
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Dictionary Example (cont)}
+
+\begin{verbatim}
+if __name__=='__main__':
 print "initializing"
 genefinder=defaultdict(ChrRec)
 for line in open(sys.argv[1]):
@@ -982,6 +1075,7 @@ https://docs.python.org/2/py-modindex.html
 \frametitle{Python Resources we like}
 
 \begin{itemize}
+\item Google's python class: https://www.youtube.com/watch?v=tKTZoB2Vjuk
 \item Python in a Nutshell, Alex Martelli, O'Reilly
 \item Python Cookbook, Alex Martelli, O'Reilly
 \item https://docs.python.org/2.7/tutorial
