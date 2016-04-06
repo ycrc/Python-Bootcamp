@@ -31,15 +31,13 @@
 \frametitle{Why Anaconda?}
 
 \begin{itemize}
-\item It comes with more than 400 packages for science and data analysis
+\item It comes with many packages for science and data analysis
 \item NumPy, SciPy, Matplotlib, Pandas, IPython, Cython
+\item Includes ``Spyder'', a Python development environment
 \item Non-Python packages: curl, gcc, libboost
 \item Available for Mac, Windows and Linux
 \item Includes ``conda'', a platform independent package manager
-\item Doesn't require administrative privilege to install packages
-\item Provides "virtual environment" capabilities
 \item Compatible with pip and PyPI
-\item Many channels exist that support additional packages
 \end{itemize}
 \end{frame}
 
@@ -51,6 +49,83 @@
 \item Download installer from \url{https://www.continuum.io/download}
 \item Execute the installer and follow the instructions
 \end{itemize}
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}
+\frametitle{Introduction to Conda}
+\begin{itemize}
+\item Platform-independent package manager
+\item Doesn't require administrative privilege to install packages
+\item Provides "virtual environment" capabilities
+\item Many channels exist that support additional packages
+\item Installed on Yale clusters
+\end{itemize}
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Installing Python packages with Conda}
+It can be as easy as:
+\begin{verbatim}
+$ conda install wxpython
+\end{verbatim}
+Some packages are only available in special channels:
+\begin{verbatim}
+$ conda install -c vpython vpython
+\end{verbatim}
+Specific versions of packages can be requested:
+\begin{verbatim}
+$ conda install wxpython=3.0
+\end{verbatim}
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Virtual Environments}
+Environments allow different versions of packages
+\begin{verbatim}
+$ conda create --name test numpy=1.7
+\end{verbatim}
+On Mac OS X and Linux:
+\begin{verbatim}
+$ source activate test
+$ python
+...
+$ source deactivate
+\end{verbatim}
+On Windows:
+\begin{verbatim}
+$ activate test
+$ python
+...
+$ deactivate
+\end{verbatim}
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{More Conda operations}
+Display information about all installed packages:
+\begin{verbatim}
+$ conda list
+\end{verbatim}
+Display information about available packages:
+\begin{verbatim}
+$ conda search '^doc'  # packages that start with "doc"
+\end{verbatim}
+Display outdated packages:
+\begin{verbatim}
+$ conda search --outdated
+\end{verbatim}
+Update a package:
+\begin{verbatim}
+$ conda update wxpython
+\end{verbatim}
+Uninstall a package:
+\begin{verbatim}
+$ conda remove wxpython
+\end{verbatim}
 \end{frame}
 
 \end{document}
