@@ -29,37 +29,43 @@
 %----------- slide --------------------------------------------------%
 \begin{frame}
 \frametitle{Why Anaconda?}
-
+Anaconda has become very popular, particularly for data analysis
 \begin{itemize}
-\item It comes with many packages for science and data analysis
-\item NumPy, SciPy, Matplotlib, Pandas, IPython, Cython
-\item Includes ``Spyder'', a Python development environment
-\item Non-Python packages: curl, gcc, libboost
+\item Python distribution that is easy to install
 \item Available for Mac, Windows and Linux
-\item Includes ``conda'', a platform independent package manager
-\item Compatible with pip and PyPI
+\item Includes many popular packages:
+  NumPy, SciPy, Matplotlib, Pandas, IPython, Cython
+\item Includes \textbf{Spyder}, a Python development environment
+\item Includes \textbf{conda}, a platform independent package manager
+\item Can also install packages via \textbf{pip}
 \end{itemize}
 \end{frame}
 
 %----------- slide --------------------------------------------------%
-\begin{frame}
+\begin{frame}[fragile]
 \frametitle{Installing Anaconda}
-
+Anaconda is easy to install
 \begin{itemize}
 \item Download installer from \url{https://www.continuum.io/download}
 \item Execute the installer and follow the instructions
 \end{itemize}
+\vskip10pt
+Anaconda is installed on Yale clusters Omega and Grace
+\begin{verbatim}
+$ module load Langs/Python/2.7-anaconda
+\end{verbatim}
 \end{frame}
 
 %----------- slide --------------------------------------------------%
 \begin{frame}
 \frametitle{Introduction to Conda}
+Simplifies installation of Python packages
 \begin{itemize}
 \item Platform-independent package manager
-\item Doesn't require administrative privilege to install packages
+\item Doesn't require administrative privileges
 \item Provides "virtual environment" capabilities
-\item Many channels exist that support additional packages
-\item Installed on Yale clusters
+\item Many \textit{channels} exist that support additional packages
+\item Documentation at \url{http://conda.pydata.org.docs/}
 \end{itemize}
 \end{frame}
 
@@ -70,23 +76,27 @@ It can be as easy as:
 \begin{verbatim}
 $ conda install wxpython
 \end{verbatim}
-Some packages are only available in special channels:
-\begin{verbatim}
-$ conda install -c vpython vpython
-\end{verbatim}
 Specific versions of packages can be requested:
 \begin{verbatim}
 $ conda install wxpython=3.0
+\end{verbatim}
+Some packages are only available in special channels:
+\begin{verbatim}
+$ conda install -c vpython vpython
 \end{verbatim}
 \end{frame}
 
 %----------- slide --------------------------------------------------%
 \begin{frame}[fragile]
 \frametitle{Virtual Environments}
-Environments allow different versions of packages
+Environments allow different versions of packages on same machine
+\vskip10pt
+Create environment ``test'' and install numpy version 1.7
 \begin{verbatim}
 $ conda create --name test numpy=1.7
 \end{verbatim}
+Environments must be activated
+\vskip10pt
 On Mac OS X and Linux:
 \begin{verbatim}
 $ source activate test
@@ -106,26 +116,43 @@ $ deactivate
 %----------- slide --------------------------------------------------%
 \begin{frame}[fragile]
 \frametitle{More Conda operations}
-Display information about all installed packages:
+Display help for conda command (and sub-commands):
+\begin{verbatim}
+$ conda --help
+$ conda list --help
+\end{verbatim}
+List packages in current conda environment:
 \begin{verbatim}
 $ conda list
 \end{verbatim}
-Display information about available packages:
+Display all information about conda installation:
+\begin{verbatim}
+$ conda info -a
+\end{verbatim}
+Search for available packages (using regular expressions):
 \begin{verbatim}
 $ conda search '^doc'  # packages that start with "doc"
 \end{verbatim}
-Display outdated packages:
-\begin{verbatim}
-$ conda search --outdated
-\end{verbatim}
-Update a package:
+Update package:
 \begin{verbatim}
 $ conda update wxpython
 \end{verbatim}
-Uninstall a package:
+Uninstall package:
 \begin{verbatim}
 $ conda remove wxpython
 \end{verbatim}
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Warning about installing/updating packages}
+Installing packages into existing environment may cause problems
+\begin{itemize}
+\item best to install all necessary packages at same time
+\item \textbf{install} command may ask permission to update existing packages
+which may result in version conflicts
+\item install packages into new environments if possible to avoid conflicts
+\end{itemize}
 \end{frame}
 
 \end{document}
