@@ -5,9 +5,6 @@ a = np.zeros((2,3), dtype=np.float64)
 # Create array initialized by list of lists
 a = np.array([[0,1,2],[3,4,5]], dtype=np.float64)
 
-# Create array by reading CSV file
-a = np.genfromtxt('data.csv', dtype=np.float64, delimiter=',')
-
 # Create array using "arange" function
 a = np.arange(6, dtype=np.float64).reshape(2,3)
 
@@ -76,9 +73,6 @@ linalg.svd(a)
 
 # Compute eigenvalues
 linalg.eigvals(a)
-
-# Compute Cholesky decomposition
-linalg.cholesky(a)
 
 import matplotlib.pyplot as plt
 x = np.linspace(0.0, 2.0, 20)
