@@ -1,0 +1,5 @@
+FCID,Lane,Sample_ID,SampleRef,index,Description,Control,Recipe,Operator,Project
+160212,1,A1,human,TAAGGCGA-TAGATCGC,None,N,Eland-rna,Mei,Jon_mix10
+160212,1,A2,human,CGTACTAG-CTCTCTAT,None,N,Eland-rna,Mei,Jon_mix10
+160212,1,A3,human,AGGCAGAA-TATCCTCT,None,N,Eland-rna,Mei,Jon_mix10
+160212,1,A4,human,TCCTGAGC-AGAGTAGA,None,N,Eland-rna,Mei,Jon_mix10

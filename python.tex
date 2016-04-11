@@ -62,9 +62,10 @@
 \end{frame}
 
 %----------- slide --------------------------------------------------%
-\begin{frame}
-\frametitle{To get help}
+\begin{frame}[fragile]
+\frametitle{To get help or report problems}
 \begin{itemize}
+\item Check our status page: \url{http://research.computing.yale.edu/system-status}
 \item Send an email to: \url{hpc@yale.edu}
 \item Read documentation at: \url{http://research.computing.yale.edu/hpc-support}
 \item Email us directly:
@@ -76,15 +77,29 @@
 \end{frame}
 
 %----------- slide --------------------------------------------------%
-\begin{frame}
+\begin{frame}[fragile]
+\frametitle{When reporting a problem}
+It is best to send problem reports to our tracking system: hpc@yale.edu 
+\vspace{2mm}
+
+Please include, as applicable:
+\begin{itemize}
+\item The cluster you're working on
+\item The directory you're working in
+\item The command you ran, and what happened, in as much detail as you can
+\end{itemize}
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
 \frametitle{What is the Yale Center for Research Computing?}
 
 \begin{itemize}
 \item 160 St. Ronan st, at the corner of Edwards and St. Ronan
-\item Newly created Center to support your research computing needs
-\item Applications specialists and system engineers
+\item Specifically created to support your research computing needs
+\item \textasciitilde 15 staff, including applications specialists and system engineers
 \item Available to consult with and educate users
-\item Manage compute clusters
+\item Manage compute clusters and support users
 \end{itemize}
 \end{frame}
 
@@ -95,7 +110,7 @@
 \begin{itemize}
 \item Free, portable, easy to learn
 \item Wildly popular, huge and growing community
-\item Intuitive, easy to learn
+\item Intuitive, natural syntax
 \item Ideal for rapid prototyping but also for large applications
 \item Very efficient to write, reasonably efficient to run
 \item Numerous extensions (modules)
@@ -111,6 +126,7 @@
 \item Compute statistics
 \item Build processing pipelines
 \item Build simple web applications
+\item Perform large numberical computations
 \item ...
 \end{itemize}
 
@@ -122,10 +138,12 @@ Python can be run interactively or as a program
 
 %----------- slide --------------------------------------------------%
 \begin{frame}
-\frametitle{Overview}
+\frametitle{Overview of topics}
 \begin{itemize}
 \item Some python data types and control statements
 \item Examples of python in action
+\item The Anaconda python environment
+\item Numerical computation in python using numpy
 \item Some additional features you should know about
 \item Resources
 \end{itemize}
@@ -289,7 +307,7 @@ Note:
 \begin{frame}[fragile]
 \frametitle{Control Flow Statements: if}
 
-If-then statements allow you to do a test, and then do something
+If statements allow you to do a test, and do something
 based on the result:
 
 \begin{verbatim}
@@ -406,11 +424,15 @@ In the previous example:
 \end{verbatim}
 
 How did we know that \textit{print i} was part of the loop?
+\vspace{2mm}
 
 Many programming languages use \{ \} or Begin End to delineate blocks of
 code to treat as a single unit.
+\vspace{2mm}
 
 Python uses white space (blanks).  To define a block of code, indent the block.
+\vspace{2mm}
+
 By convention and for readability, indent a consistent number, 
 usually 3 or 4 spaces.  Many editors will do this for you.
 
@@ -445,7 +467,7 @@ Procedures are functions that return no values.
 \begin{itemize}
 \item 4 basic types: int, float, boolean, string
 \item 3 complex types: list, dict, tuple
-\item 4 control constructs: if/then, while, for, def
+\item 4 control constructs: if, while, for, def
 \end{itemize}
 \end{frame}
 
@@ -740,7 +762,7 @@ The conversion command is: quip -d file.fastq.qp \textgreater file.fastq
 
 %----------- slide --------------------------------------------------%
 \begin{frame}[fragile]
-\frametitle{Directory Walk Example (cont)}
+\frametitle{Using os.walk}
 
 We need a way to traverse all the files and directories.
 \vspace{2mm}
@@ -771,6 +793,28 @@ $ python walk.py .
 
 %----------- slide --------------------------------------------------%
 \begin{frame}[fragile]
+\frametitle{Invoking programs from python}
+
+The subprocess module has a variety of ways to do this.  
+\vspace{2mm}
+
+A very simple use is:
+
+\smallfont
+\begin{verbatim}
+
+import subprocess
+
+ret=subprocess.call(cmd, shell=True)
+
+ret=subprocess.call('quip -c myfile.fastq.qp > myfile.qp', shell=True)
+\end{verbatim}
+
+ret is 0 on success, non-zero error code on failure.
+
+\end{frame}
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
 \frametitle{Directory Walk Example (cont)}
 
 \begin{verbatim}
@@ -779,55 +823,19 @@ start=sys.argv[1]
 for d, subdirs, files in os.walk(start):
     for f in files:
         if f.endswith('.fastq.qp'):
-            fp=d+'/'+f
-            nfp=fp.replace('fastq.qp', '.fastq')
-            cmd='quip -d '+fp+' > '+nfp
+            fn=d+'/'+f
+            nfn=fn.replace('.fastq.qp', '.fastq')
+            cmd='quip -d '+fn+' > '+nfn
             ret=subprocess.call(cmd, shell=True)
-            if ret: # True means failed
-                print "Failed on ", fp
-                sys.exit(1)
+            if ret==0:
+                if os.path.exists(nfn):
+                    os.remove(fpn)
             else:
-                if os.path.exists(nfp):
-                    os.remove(fp)
-\end{verbatim}
-\end{frame}
-
-%----------- slide --------------------------------------------------%
-\begin{frame}[fragile]
-\frametitle{Tangent 1}
-
-We cut some corners in the last example. 
-\vspace{5mm}
-
-\verb+nfp=fp.replace('fastq.qp', '.fastq')+
-
-\vspace{5mm}
-It's unlikely, but what if fastq.qp appeared in the middle of the file name?\\
-Python has a wonderful regular expression module, re.
-
-\vspace{5mm}
-\verb+nfp=re.sub(r'.fastq.qp$', '.fastq', fp)+
-
-\end{frame}
-
-%----------- slide --------------------------------------------------%
-\begin{frame}[fragile]
-\frametitle{Tangent 2}
-
-\begin{verbatim}
-fp=d+'/'+f
-nfp=re.sub(r'.fastq.qp$', '.fastq', fp)+
-cmd='quip -d '+fp+' > '+nfp
+                print "Failed on ", fn
+                sys.exit(1)
 \end{verbatim}
 
-Formatting using string concatenation is very clunky.  Python has a 
-nice string formating operator that derives from C.
-
-\begin{verbatim}
-cmd='quip -d %s > %s' % (fp, nfp)
-\end{verbatim}
-
-\%s expects a string. \%f float, \%d integer.  Tabs are \textbackslash t.
+To run it, we'd do: \verb+$ python walk.py .+
 
 \end{frame}
 
@@ -1090,7 +1098,7 @@ print genefinder['chr4'].genes
 \item default and named function parameters
 \item garbage collection
 \item objects
-\item tuples
+\item list comprehensions
 \end{itemize}
 
 \end{frame}
@@ -1103,7 +1111,7 @@ print genefinder['chr4'].genes
 \item glob: does the same as * in the shell
 \item subprocess: running commands or programs from python
 \item argparse: handles complicated invocation flags and parameters
-\item re: regular expressions (we saw a bit)
+\item re: regular expressions 
 \item os: lots of useful utilities
 \item struct: ways to handle binary data cleanly
 \item cPickle: support for serialization
