@@ -831,7 +831,7 @@ for d, subdirs, files in os.walk(start):
             ret=subprocess.call(cmd, shell=True)
             if ret==0:
                 if os.path.exists(nfn):
-                    os.remove(fpn)
+                    os.remove(fn)
             else:
                 print "Failed on ", fn
                 sys.exit(1)
@@ -845,9 +845,6 @@ To run it, we'd do: \verb+$ python walk.py .+
 \begin{frame}[fragile]
 \frametitle{Dictionary Example}
 
-Dictionaries and sorting are two of the most useful tools in Python.  
-\vspace{2mm}
-
 Dictionaries associate names with data, and allow quick retrieval by name.
 \vspace{2mm}
 
@@ -855,7 +852,6 @@ By nesting dictionaries, powerful lookups are easy.
 \vspace{2mm}
 
 In this example, we'll:
-
 \begin{itemize}
 \item create a dict containing objects
 \item load the objects with search data

@@ -9,7 +9,7 @@ for d, subdirs, files in os.walk(start):
             ret=subprocess.call(cmd, shell=True)
             if ret==0:
                 if os.path.exists(nfn):
-                    os.remove(fpn)
+                    os.remove(fn)
             else:
                 print "Failed on ", fn
                 sys.exit(1)
