@@ -1,4 +1,4 @@
-all: python.pdf numpy.pdf anaconda.pdf
+all: python.pdf data_analysis.pdf anaconda.pdf
 
 python.pdf: python.tex
 	pdflatex python.tex
@@ -6,9 +6,9 @@ python.pdf: python.tex
 	#-xpdf -g 1200x800 -z page python.pdf
 	-evince python.pdf
 
-numpy.pdf: numpy.tex
-	pdflatex numpy.tex
-	pdflatex numpy.tex
+data_analysis.pdf: data_analysis.tex
+	pdflatex data_analysis.tex
+	pdflatex data_analysis.tex
 
 anaconda.pdf: anaconda.tex
 	pdflatex anaconda.tex
