@@ -4,7 +4,7 @@ python.pdf: python.tex
 	pdflatex python.tex
 	pdflatex python.tex
 	#-xpdf -g 1200x800 -z page python.pdf
-	evince python.pdf
+	-evince python.pdf
 
 numpy.pdf: numpy.tex
 	pdflatex numpy.tex
