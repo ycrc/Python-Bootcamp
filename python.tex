@@ -756,7 +756,7 @@ In pseudocode we might write:
      if failure, stop
 \end{verbatim}
 
-The conversion command is: quip -d file.fastq.qp \textgreater file.fastq 
+The conversion command is: quip -d -c file.fastq.qp \textgreater file.fastq 
 
 \end{frame}
 
@@ -765,29 +765,30 @@ The conversion command is: quip -d file.fastq.qp \textgreater file.fastq
 \frametitle{Using os.walk}
 
 We need a way to traverse all the files and directories.
-\vspace{2mm}
-
 os.walk(dir) starts at dir and visits every subdirectory below it.
-\vspace{2mm}
-
 It returns a list of files and subdirectories at each subdirectory. 
 \vspace{2mm}
 
-Here is a sample script walk.py, that uses os.walk()
+For example, imagine we have the following dirs and files:
 
 \smallfont
 \begin{verbatim}
-import os, sys
-start=sys.argv[1]
-for d, subdirs, files in os.walk(start):
-    print d, subdirs, files
+d1
+d1/d2
+d1/d2/f2.txt
+d1/f1.txt
+\end{verbatim}
 
-$ python walk.py .
-. ['d1'] ['python.tex', 'outline.txt~', 'walk.py', 'python.pdf', 'python.snm', 'python.nav', 'python.vrb', 'python.out', '#python.tex#', 'sampleslide.tex', 'walk.py~', 'python.log', 'python.toc', 'python.aux', 'outline.txt', '.#python.tex', 'Makefile']
-./d1 ['d2'] ['f1']
-./d1/d2 ['d3'] ['f2']
-./d1/d2/d3 [] ['f3']
+This is how we use os.walk:
 
+\smallfont
+\begin{verbatim}
+>>> import os
+>>> for d, dirs, files in os.walk('d1'):
+...   print d, dirs, files
+... 
+d1 ['d2'] ['f1.txt']
+d1/d2 [] ['f2.txt']
 \end{verbatim}
 \end{frame}
 
@@ -807,7 +808,7 @@ import subprocess
 
 ret=subprocess.call(cmd, shell=True)
 
-ret=subprocess.call('quip -c myfile.fastq.qp > myfile.qp', shell=True)
+ret=subprocess.call('quip -d -c myfile.fastq.qp > myfile.qp', shell=True)
 \end{verbatim}
 
 ret is 0 on success, non-zero error code on failure.
@@ -817,6 +818,7 @@ ret is 0 on success, non-zero error code on failure.
 \begin{frame}[fragile]
 \frametitle{Directory Walk Example (cont)}
 
+\smallfont
 \begin{verbatim}
 import os, sys, subprocess
 start=sys.argv[1]
@@ -825,7 +827,7 @@ for d, subdirs, files in os.walk(start):
         if f.endswith('.fastq.qp'):
             fn=d+'/'+f
             nfn=fn.replace('.fastq.qp', '.fastq')
-            cmd='quip -d '+fn+' > '+nfn
+            cmd='quip -d -c '+fn+' > '+nfn
             ret=subprocess.call(cmd, shell=True)
             if ret==0:
                 if os.path.exists(nfn):
@@ -855,10 +857,10 @@ By nesting dictionaries, powerful lookups are easy.
 In this example, we'll:
 
 \begin{itemize}
-\item create a nested set of dictionaries
-\item load them with data
-\item retrieve specific data
-\item sort data
+\item create a dict containing objects
+\item load the objects with search data
+\item use the dict to retrieve the appropriate object for a search
+\item perform the search
 \end{itemize}
 
 \end{frame}
@@ -936,7 +938,7 @@ Then we'll find the overlaps for mapped dna sequences.
 
 %----------- slide --------------------------------------------------%
 \begin{frame}[fragile]
-\frametitle{Dictionary Example (cont)}
+\frametitle{Dictionary Example (calculating overlaps)}
 
 Here is a picture of what we want:
 
@@ -1012,7 +1014,6 @@ for line in open(sys.argv[2]):
 \begin{frame}[fragile]
 \frametitle{Dictionary Example (cont)}
 
-
 \smallfont
 \begin{verbatim}
 rdb9@bdn:ruddle2:~ $ python dict_example.py knownGene.txt hits.sam
@@ -1030,65 +1031,6 @@ HWI-ST0831:196:C1YCJACXX:2:2302:16215:62515
         uc010kdy.1
 \end{verbatim}
 \end{frame}
-
-%----------- slide --------------------------------------------------%
-\begin{frame}[fragile]
-\frametitle{Dictionary Example (cont)}
-
-A more realistic example illustrating some useful elements:
-\begin{itemize}
-\item object encapsulation
-\item defaultdict from Collections
-\item use of main block
-\end{itemize}
-
-\smallfont
-\begin{verbatim}
-import sys
-from intervaltree import IntervalTree
-from collections import defaultdict
-
-class ChrRec(object):
-    def __init__(self):
-        self.it=IntervalTree() # holds gene intervals
-        self.genes=defaultdict(list) # holds a list of sequences for each gene
-    def addGene(sel, genename, genestart, geneend):
-        self.it.addi(genestart, geneend, genename)
-    def getGenes(self, readstart, readend):
-        genes=self.it.search(readstart, readend)
-        return [gene.data for gene in genes]
-    def insertSeq(self, start, end, seq):
-        for genename in self.getGenes(start, end):
-            self.genes[genename].append(seq)
-    def getSeqs(self, genename):
-        return self.genes[genename]
-
-\end{verbatim}
-\end{frame}
-
-%----------- slide --------------------------------------------------%
-\begin{frame}[fragile]
-\frametitle{Dictionary Example (cont)}
-
-\begin{verbatim}
-if __name__=='__main__':
-print "initializing"
-genefinder=defaultdict(ChrRec)
-for line in open(sys.argv[1]):
-    genename, chrm, strand, start, end = line.split()[0:5]
-    genefinder[chrm].addGene(genename, int(start), int(end))
-
-print "reading sequences"
-for line in open(sys.argv[2]):
-    tag, flag, chrm, pos, mapq, cigar, rnext, \
-    pnext, tlen, seq, qual = rd = line.split()[0:11]
-    genefinder[chrm].insertSeq(int(pos), int(pos)+len(seq), rd)
-
-print genefinder['chr4'].genes
-
-\end{verbatim}
-\end{frame}
-
 
 %----------- slide --------------------------------------------------%
 \begin{frame}[fragile]
