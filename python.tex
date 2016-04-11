@@ -80,9 +80,9 @@
 \frametitle{What is the Yale Center for Research Computing?}
 
 \begin{itemize}
-\item 160 St. Ronan st, at the corner of Edwards and St. Ronan.
-\item Newly created Center to support your research computing needs.
-\item Applications specialists and system engineers.
+\item 160 St. Ronan st, at the corner of Edwards and St. Ronan
+\item Newly created Center to support your research computing needs
+\item Applications specialists and system engineers
 \item Available to consult with and educate users
 \item Manage compute clusters
 \end{itemize}
@@ -114,13 +114,27 @@
 \item ...
 \end{itemize}
 
-You can use Python instead of bash, Java, or C. 
+You can use Python instead of bash, Java, or C
+\vspace{2mm}
+
+Python can be run interactively or as a program
 \end{frame}
 
+%----------- slide --------------------------------------------------%
+\begin{frame}
+\frametitle{Overview}
+\begin{itemize}
+\item Some python data types and control statements
+\item Examples of python in action
+\item Some additional features you should know about
+\item Resources
+\end{itemize}
+\end{frame}
 %----------- slide --------------------------------------------------%
 \begin{frame}[fragile]
 \frametitle{Basic Python Types and Assignment}
 
+\smallfont
 \begin{verbatim}
 >>> radius=2
 >>> pi=3.14
@@ -133,7 +147,6 @@ You can use Python instead of bash, Java, or C.
 >>> delicious=True
 \end{verbatim}
 
-Note:
 \begin{itemize}
 \item variables do not need to be declared or typed
 \item integers and floating points can be used together
@@ -189,6 +202,26 @@ Lists are more flexible than arrays, e.g.:
 [1, 2, 3, 'three to six', 7, 8, 9]
 \end{verbatim}
 
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Tuples}
+
+Tuples are similar to lists, but cannot be modified.
+\begin{verbatim}
+>>> t=(1,2,3,4,5,6,7,8,9)
+>>> t[4:6]
+(5, 6)
+>>> t[6]="changeme"
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'tuple' object does not support item assignment
+>>> t.append('more')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'tuple' object has no attribute 'append'
+\end{verbatim}
 \end{frame}
 
 %----------- slide --------------------------------------------------%
@@ -285,7 +318,7 @@ test is false:
 >>> import random
 >>> count=0
 >>> while count<100:
-...    count+=random.randint(0,10)
+...    count=count+random.randint(0,10)
 ...    print str(count)+" ",
 ... 
 5  11  19  19  21  28  35  37  47  53  53  57  58  59  60  66  71  
@@ -321,6 +354,7 @@ apple orange banana
 \frametitle{Using for loops and dicts}
 If you loop over a dict, you'll get just keys.  Use iteritems() for keys and values.
 
+\smallfont
 \begin{verbatim}
 >>> for denom in coins:  print denom
 ... 
@@ -387,7 +421,9 @@ usually 3 or 4 spaces.  Many editors will do this for you.
 \frametitle{Functions}
 
 Functions allow you to write code once and use it many times.
+\vspace{2mm}
 
+Functions also hide details so code is more understandable.
 \begin{verbatim}
 >>> def area(w, h):
 ...    return w*h
@@ -401,6 +437,16 @@ Functions allow you to write code once and use it many times.
 Some languages differentiate between functions and procedures.  In python, everything is a function.
 Procedures are functions that return no values.
 
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Summary}
+\begin{itemize}
+\item 4 basic types: int, float, boolean, string
+\item 3 complex types: list, dict, tuple
+\item 4 control constructs: if/then, while, for, def
+\end{itemize}
 \end{frame}
 
 %----------- slide --------------------------------------------------%
@@ -450,8 +496,7 @@ In Python:
 \begin{verbatim}
 import sys
 fp=open(sys.argv[1])
-hdr=fp.readline().strip()
-print hdr
+print fp.readline().strip()
 for l in fp:
    flds=l.strip().split(',')
    flds[4]=flds[4][:-3]
@@ -494,8 +539,7 @@ We'll use that to read from the file.
 \textit{read the first header line, and print it out}
 
 \begin{verbatim}
-hdr=fp.readline().strip()
-print hdr
+print fp.readline().strip()
 \end{verbatim}
 
 We'll call readline() on the file pointer to get a single line from the file.
@@ -588,8 +632,7 @@ Reviewing:
 \begin{verbatim}
 import sys
 fp=open(sys.argv[1])
-hdr=fp.readline().strip()
-print hdr
+print fp.readline().strip()
 for l in fp:
    flds=l.strip().split(',')
    flds[4]=flds[4][:-3]
@@ -599,6 +642,8 @@ for l in fp:
 
 We would invoke it like this:
 \begin{verbatim}
+$ python fixfile.py badfile.txt
+
 $ python fixfile.py badfile.txt > fixedfile.txt
 \end{verbatim}
 
@@ -608,13 +653,12 @@ $ python fixfile.py badfile.txt > fixedfile.txt
 \begin{frame}[fragile]
 \frametitle{Some variations on the theme}
 
-We could skip certain lines
+We could skip certain lines (with other than human in the 3rd column)
 
 \begin{verbatim}
 import sys
 fp=open(sys.argv[1])
-hdr=fp.readline().strip()
-print hdr
+print fp.readline().strip()
 for l in fp:
    if l[3] != 'human': continue
    flds=l.strip().split(',')
@@ -741,7 +785,7 @@ for d, subdirs, files in os.walk(start):
             ret=subprocess.call(cmd, shell=True)
             if ret: # True means failed
                 print "Failed on ", fp
-                break
+                sys.exit(1)
             else:
                 if os.path.exists(nfp):
                     os.remove(fp)
@@ -866,11 +910,13 @@ intervaltree is a python module that makes that easy.
 >>> it[5:10]='5-10'
 >>> it[1:11]='1-11'
 >>> it
-IntervalTree([Interval(1, 11, '1-11'), Interval(4, 7, '4-7'), Interval(5, 10, '5-10')])
+IntervalTree([Interval(1, 11, '1-11'), Interval(4, 7, '4-7'), 
+              Interval(5, 10, '5-10')])
 >>> it[7]
 set([Interval(1, 11, '1-11'), Interval(5, 10, '5-10')])
 >>> it[6:8]
-set([Interval(4, 7, '4-7'), Interval(1, 11, '1-11'), Interval(5, 10, '5-10')]) 
+set([Interval(4, 7, '4-7'), Interval(1, 11, '1-11'), 
+                            Interval(5, 10, '5-10')]) 
 \end{verbatim}
 
 We'll use interval trees, one for each chromosome, to store an interval for each gene.
@@ -1075,7 +1121,7 @@ https://docs.python.org/2/py-modindex.html
 \frametitle{Python Resources we like}
 
 \begin{itemize}
-\item Google's python class: https://www.youtube.com/watch?v=tKTZoB2Vjuk
+\item Google's python class: https://www.youtube.com/watch?v=tKTZoB2Vjukxo
 \item Python in a Nutshell, Alex Martelli, O'Reilly
 \item Python Cookbook, Alex Martelli, O'Reilly
 \item https://docs.python.org/2.7/tutorial
