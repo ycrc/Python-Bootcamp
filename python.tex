@@ -337,10 +337,10 @@ test is false:
 >>> count=0
 >>> while count<100:
 ...    count=count+random.randint(0,10)
-...    print str(count)+" ",
+...    print count,
 ... 
-5  11  19  19  21  28  35  37  47  53  53  57  58  59  60  66  71  
-75  82  86  94  101 
+5 11 19 19 21 28 35 37 47 53 53 57 58 59 60 66 71   
+75 82 86 94 101 
 \end{verbatim}
 
 \end{frame}
@@ -752,12 +752,15 @@ In pseudocode we might write:
 \begin{verbatim}
  for each directory
    get a list of files in that directory
-   for each file that ends with .fastq
-     create a new file name with .qp added
-     create a command to do the compression
-     run that command and check for success
-     if success, delete the original
-     if failure, stop
+   for each file in that directory
+     if that file's name ends with .fastq
+       create a new file name with .qp added
+       create a command to do the compression
+       run that command and check for success
+       if success
+         delete the original
+       else
+         stop
 \end{verbatim}
 
 The conversion command is: quip -c file.fastq \textgreater file.fastq.qp 
@@ -841,7 +844,7 @@ for d, subdirs, files in os.walk(start):
                 sys.exit(1)
 \end{verbatim}
 
-To run it, we'd do: \verb+$ python walk.py .+
+To run it, we'd do: \verb+$ python walk.py d1+
 
 \end{frame}
 
@@ -963,17 +966,18 @@ Here is a picture of what we want:
 Again, in pseudocode:
 \begin{verbatim}
  # create the interval trees
+ create empty dict
  open the gene file
  for each line in the file
     get gene name, chrom, start, end
-    initialize an interval object for the chrom, if needed
-    add the interval, with the gene name as the data
+    initialize an intervaltree for the chrom, if needed, and add to dict
+    add the interval and gene name to the interval tree
 
  # use the interval trees to find overlapped genes
  open the dna sequence file
  for each line in the file:
-   get chrom, mapped position, and seq length
-   look up the interval tree for that chrom
+   get chrom, mapped position, and dna seq
+   look up the interval tree for that chrom in the dict
    search the interval tree for overlaps [pos, pos+len]
    print out the gene names
 
