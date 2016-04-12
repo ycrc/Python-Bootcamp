@@ -723,10 +723,10 @@ for f in sys.argv[1:]:
 Imagine you have a directory tree with many subdirectories.  
 \vspace{2mm}
 
-In those directories are files named *.fastq.qp.  You want to:
+In those directories are files named *.fastq.  You want to:
 \begin{itemize}
 \item find them
-\item convert them to fastq using a program
+\item compress them to fastq.qp using a program
 \item delete them if the conversion was successful
 \end{itemize}
 
@@ -748,15 +748,15 @@ In pseudocode we might write:
 \begin{verbatim}
  for each directory
    get a list of files in that directory
-   for each file that ends with .fastq.qp
-     create a new file name without .qp
-     create a command to do the conversion
+   for each file that ends with .fastq
+     create a new file name with .qp added
+     create a command to do the compression
      run that command and check for success
      if success, delete the original
      if failure, stop
 \end{verbatim}
 
-The conversion command is: quip -d -c file.fastq.qp \textgreater file.fastq 
+The conversion command is: quip -c file.fastq \textgreater file.fastq.qp 
 
 \end{frame}
 
@@ -808,7 +808,7 @@ import subprocess
 
 ret=subprocess.call(cmd, shell=True)
 
-ret=subprocess.call('quip -d -c myfile.fastq.qp > myfile.qp', shell=True)
+ret=subprocess.call('quip -c myfile.fastq > myfile.fastq.qp', shell=True)
 \end{verbatim}
 
 ret is 0 on success, non-zero error code on failure.
@@ -824,10 +824,10 @@ import os, sys, subprocess
 start=sys.argv[1]
 for d, subdirs, files in os.walk(start):
     for f in files:
-        if f.endswith('.fastq.qp'):
+        if f.endswith('.fastq'):
             fn=d+'/'+f
-            nfn=fn.replace('.fastq.qp', '.fastq')
-            cmd='quip -d -c '+fn+' > '+nfn
+            nfn=fn.replace('.fastq', '.fastq.qp')
+            cmd='quip -c '+fn+' > '+nfn
             ret=subprocess.call(cmd, shell=True)
             if ret==0:
                 if os.path.exists(nfn):
