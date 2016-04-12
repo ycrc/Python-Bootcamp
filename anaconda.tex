@@ -28,16 +28,16 @@
 
 %----------- slide --------------------------------------------------%
 \begin{frame}
-\frametitle{Why Anaconda?}
-Anaconda has become very popular, particularly for data analysis
+\frametitle{What is Anaconda?}
+Anaconda is a Python distribution that is particularly popular
+for data analysis and scientific computing
 \begin{itemize}
-\item Python distribution that is easy to install
-\item Available for Mac, Windows and Linux
+\item Available for Windows, Mac OS X and Linux
 \item Includes many popular packages:
   NumPy, SciPy, Matplotlib, Pandas, IPython, Cython
 \item Includes \textbf{Spyder}, a Python development environment
-\item Includes \textbf{conda}, a platform independent package manager
-\item Can also install packages via \textbf{pip}
+\item Includes \textbf{conda}, a platform-independent package manager
+\item Developed by Continuum Analytics, Inc.
 \end{itemize}
 \end{frame}
 
@@ -63,6 +63,7 @@ Simplifies installation of Python packages
 \begin{itemize}
 \item Platform-independent package manager
 \item Doesn't require administrative privileges
+\item Installs non-Python library dependencies (MKL, HDF5, Boost)
 \item Provides "virtual environment" capabilities
 \item Many \textit{channels} exist that support additional packages
 \item Documentation at \url{http://conda.pydata.org.docs/}
@@ -83,6 +84,10 @@ $ conda install wxpython=3.0
 Some packages are only available in special channels:
 \begin{verbatim}
 $ conda install -c vpython vpython
+\end{verbatim}
+Pip can also be used:
+\begin{verbatim}
+$ pip install intervaltree
 \end{verbatim}
 \end{frame}
 
@@ -106,10 +111,10 @@ $ source deactivate
 \end{verbatim}
 On Windows:
 \begin{verbatim}
-$ activate test
-$ python
+> activate test
+> python
 ...
-$ deactivate
+> deactivate
 \end{verbatim}
 \end{frame}
 
