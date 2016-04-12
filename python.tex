@@ -676,16 +676,21 @@ $ python fixfile.py badfile.txt > fixedfile.txt
 \frametitle{Some variations on the theme}
 
 We could skip certain lines (with other than human in the 3rd column)
+\vspace{2mm}
+
+We could also specify the output file on the command line
+\vspace{2mm}
 
 \begin{verbatim}
 import sys
 fp=open(sys.argv[1])
-print fp.readline().strip()
+ofp=open(sys.argv[2], 'w')
+print >> ofp, fp.readline().strip()
 for l in fp:
-   if l[3] != 'human': continue
    flds=l.strip().split(',')
+   if flds[3] != 'human': continue
    flds[4]=flds[4][:-3]
-   print ','.join(flds)
+   print >> ofp, ','.join(flds)
 \end{verbatim}
 \end{frame}
 
@@ -708,7 +713,6 @@ for f in sys.argv[1:]:
       print hdr
       wrotehdr=True
    for l in fp:
-      if l[3] != 'human': continue
       flds=l.strip().split(',')
       flds[4]=flds[4][:-3]
       print ','.join(flds)
