@@ -52,7 +52,7 @@
   Yale Center for Research Computing \\
   Yale University
 }
-\date{April 2016}
+\date{July 2016}
 \begin{document}
 
 
@@ -99,11 +99,11 @@ http://research.computing.yale.edu/hpc-bootcamp
 \frametitle{What is the Yale Center for Research Computing?}
 
 \begin{itemize}
-\item 160 St. Ronan st, at the corner of Edwards and St. Ronan
 \item Specifically created to support your research computing needs
 \item \textasciitilde 15 staff, including applications specialists and system engineers
 \item Available to consult with and educate users
 \item Manage compute clusters and support users
+\item Located at 160 St. Ronan st, at the corner of Edwards and St. Ronan
 \end{itemize}
 
 \end{frame}
@@ -131,7 +131,7 @@ http://research.computing.yale.edu/hpc-bootcamp
 \item Compute statistics
 \item Build processing pipelines
 \item Build simple web applications
-\item Perform large numberical computations
+\item Perform large numerical computations
 \item ...
 \end{itemize}
 
@@ -139,6 +139,22 @@ You can use Python instead of bash, Java, or C
 \vspace{2mm}
 
 Python can be run interactively or as a program
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+\begin{frame}[fragile]
+\frametitle{Running Python}
+\begin{itemize}
+\item Create a file using editor, then:
+\\
+\verb|$ python myscript.py |
+
+\item Run interpreter interactively
+\\
+\verb|$ python |
+
+\item Use a python environment, e.g. Anaconda
+\end{itemize}
 \end{frame}
 
 %----------- slide --------------------------------------------------%
@@ -923,17 +939,17 @@ intervaltree is a python module that makes that easy.
 \begin{verbatim}
 >>> from intervaltree import IntervalTree
 >>> it=IntervalTree()
->>> it[4:7]='4-7'
->>> it[5:10]='5-10'
->>> it[1:11]='1-11'
+>>> it[4:7]='I1'
+>>> it[5:10]='I2'
+>>> it[1:11]='I3'
 >>> it
-IntervalTree([Interval(1, 11, '1-11'), Interval(4, 7, '4-7'), 
-              Interval(5, 10, '5-10')])
+IntervalTree([Interval(1, 11, 'I3'), Interval(4, 7, 'I1'), 
+              Interval(5, 10, 'I2')])
 >>> it[7]
-set([Interval(1, 11, '1-11'), Interval(5, 10, '5-10')])
+set([Interval(1, 11, 'I3'), Interval(5, 10, 'I2')])
 >>> it[6:8]
-set([Interval(4, 7, '4-7'), Interval(1, 11, '1-11'), 
-                            Interval(5, 10, '5-10')]) 
+set([Interval(4, 7, 'I1'), Interval(1, 11, 'I3'), 
+                            Interval(5, 10, 'I2')]) 
 \end{verbatim}
 
 We'll use interval trees, one for each chromosome, to store an interval for each gene.
