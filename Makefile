@@ -3,7 +3,6 @@ all: python.pdf data_analysis.pdf anaconda.pdf
 python.pdf: python.tex
 	pdflatex python.tex
 	pdflatex python.tex
-	#-xpdf -g 1200x800 -z page python.pdf
 	-evince python.pdf
 
 data_analysis.pdf: data_analysis.tex

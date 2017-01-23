@@ -1,0 +1,16 @@
+\frametitle{2D plotting using Matplotlib}
+\begin{verbatim}
+import numpy as np
+import matplotlib.pyplot as plt
+x = np.linspace(0.0, 2.0, 20)
+
+plt.plot(x, np.sqrt(x), 'ro')  # red circles
+plt.show()
+
+plt.plot(x, np.sqrt(x), 'b-')  # blue lines
+plt.show()
+
+# Three plots in one figure
+plt.plot(x, x, 'g--', x, np.sqrt(x), 'ro', x, np.sqrt(x), 'b-')
+plt.show()
+\end{verbatim}

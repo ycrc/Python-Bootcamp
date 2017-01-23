@@ -114,7 +114,7 @@ Python can be run interactively or as a program
 
 %----------- slide --------------------------------------------------%
 \begin{frame}[fragile]
-\frametitle{Running Python}
+\frametitle{Several different ways to run Python}
 \begin{itemize}
 \item Create a file using editor, then:
 \\

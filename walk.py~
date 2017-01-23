@@ -1,0 +1,10 @@
+
+import os, sys
+
+start=sys.argv[1]
+for d, subdirs, files in os.walk(start):
+    for f in files:
+        if f.endswith(".qp"):
+            print f
+
+            

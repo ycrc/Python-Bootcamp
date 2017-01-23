@@ -1,0 +1,14 @@
+\frametitle{When reporting a problem}
+It is best to send problem reports to our tracking system: hpc@yale.edu
+\vspace{2mm}
+
+Please include, as applicable:
+\begin{itemize}
+\item The cluster you're working on
+\item The directory you're working in
+\item The command you ran, and what happened, in as much detail as you can
+\end{itemize}
+
+See our intro to HPC bootcamp presentation:
+http://research.computing.yale.edu/hpc-bootcamp
+

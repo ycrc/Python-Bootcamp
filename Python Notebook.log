@@ -1,0 +1,560 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=latex 2016.2.23)  20 JAN 2017 15:48
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**"Python Notebook.tex"
+(./Python Notebook.tex
+LaTeX2e <2014/05/01>
+Babel <3.9l> and hyphenation patterns for 2 languages loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/04/25 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/05/08 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: dvips.def on input line 91.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvips.def
+File: dvips.def 2014/04/23 v3.0j Driver-dependant file (DPC,SPQR)
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/enumerate.sty
+Package: enumerate 2014/10/28 v3.00 enumerate extensions (DPC)
+\@enLab=\toks15
+)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is not detected.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count87
+\Gm@cntv=\count88
+\c@Gm@tempcnt=\count89
+\Gm@bindingoffset=\dimen105
+\Gm@wd@mp=\dimen106
+\Gm@odd@mp=\dimen107
+\Gm@even@mp=\dimen108
+\Gm@layoutwidth=\dimen109
+\Gm@layoutheight=\dimen110
+\Gm@layouthoffset=\dimen111
+\Gm@layoutvoffset=\dimen112
+\Gm@dimlist=\toks16
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip43
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks17
+\ex@=\dimen113
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen114
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count90
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count91
+\leftroot@=\count92
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count93
+\DOTSCASE@=\count94
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen115
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count95
+\c@MaxMatrixCols=\count96
+\dotsspace@=\muskip10
+\c@parentequation=\count97
+\dspbrk@lvl=\count98
+\tag@help=\toks18
+\row@=\count99
+\column@=\count100
+\maxfields@=\count101
+\andhelp@=\toks19
+\eqnshift@=\dimen116
+\alignsep@=\dimen117
+\tagshift@=\dimen118
+\tagwidth@=\dimen119
+\totwidth@=\dimen120
+\lineht@=\dimen121
+\@envbody=\toks20
+\multlinegap=\skip44
+\multlinetaggap=\skip45
+\mathdisplay@stack=\toks21
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/eurosym/eurosym.sty
+Package: eurosym 1998/08/06 v1.1 European currency symbol ``Euro''
+\@eurobox=\box28
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip46
+\LTright=\skip47
+\LTpre=\skip48
+\LTpost=\skip49
+\LTchunksize=\count102
+\LTcapwidth=\dimen122
+\LT@head=\box29
+\LT@firsthead=\box30
+\LT@foot=\box31
+\LT@lastfoot=\box32
+\LT@cols=\count103
+\LT@rows=\count104
+\c@LT@tables=\count105
+\c@LT@chunks=\count106
+\LT@p@ftn=\toks22
+)
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2005/04/14 v1.61803 publication quality tables
+\heavyrulewidth=\dimen123
+\lightrulewidth=\dimen124
+\cmidrulewidth=\dimen125
+\belowrulesep=\dimen126
+\belowbottomsep=\dimen127
+\aboverulesep=\dimen128
+\abovetopsep=\dimen129
+\cmidrulesep=\dimen130
+\cmidrulekern=\dimen131
+\defaultaddspace=\dimen132
+\@cmidla=\count107
+\@cmidlb=\count108
+\@aboverulesep=\dimen133
+\@belowrulesep=\dimen134
+\@thisruleclass=\count109
+\@lastruleclass=\count110
+\@thisrulewidth=\dimen135
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box33
+\UL@hyphenbox=\box34
+\UL@skip=\skip50
+\UL@hook=\toks23
+\UL@height=\dimen136
+\UL@pe=\count111
+\UL@pixel=\dimen137
+\ULC@box=\box35
+Package: ulem 2012/05/18
+\ULdepth=\dimen138
+)
+! Undefined control sequence.
+l.41     \definecolor
+                     {orange}{cmyk}{0,0.4,0.8,0.2}
+? 
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.41     \definecolor{o
+                       range}{cmyk}{0,0.4,0.8,0.2}
+? 
+! Undefined control sequence.
+l.42     \definecolor
+                     {darkorange}{rgb}{.71,0.21,0.01}
+? 
+! Undefined control sequence.
+l.43     \definecolor
+                     {darkgreen}{rgb}{.12,.54,.11}
+? 
+! Undefined control sequence.
+l.44     \definecolor
+                     {myteal}{rgb}{.26, .44, .56}
+? 
+! Undefined control sequence.
+l.45     \definecolor
+                     {gray}{gray}{0.45}
+? 
+! Undefined control sequence.
+l.46     \definecolor
+                     {lightgray}{gray}{.95}
+? 
+! Undefined control sequence.
+l.47     \definecolor
+                     {mediumgray}{gray}{.8}
+? 
+! Undefined control sequence.
+l.48     \definecolor
+                     {inputbackground}{rgb}{.95, .95, .85}
+? 
+! Undefined control sequence.
+l.49     \definecolor
+                     {outputbackground}{rgb}{.95, .95, .95}
+? 
+! Undefined control sequence.
+l.50     \definecolor
+                     {traceback}{rgb}{1, .95, .95}
+? 
+! Undefined control sequence.
+l.52     \definecolor
+                     {red}{rgb}{.6,0,0}
+? 
+! Undefined control sequence.
+l.53     \definecolor
+                     {green}{rgb}{0,.65,0}
+? 
+! Undefined control sequence.
+l.54     \definecolor
+                     {brown}{rgb}{0.6,0.6,0}
+? 
+! Undefined control sequence.
+l.55     \definecolor
+                     {blue}{rgb}{0,.145,.698}
+? 
+! Undefined control sequence.
+l.56     \definecolor
+                     {purple}{rgb}{.698,.145,.698}
+? 
+! Undefined control sequence.
+l.57     \definecolor
+                     {cyan}{rgb}{0,.698,.698}
+? 
+! Undefined control sequence.
+l.58     \definecolor
+                     {lightgray}{gray}{0.5}
+? 
+! Undefined control sequence.
+l.61     \definecolor
+                     {darkgray}{gray}{0.25}
+? 
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.61     \definecolor{d
+                       arkgray}{gray}{0.25}
+? 
+! Undefined control sequence.
+l.62     \definecolor
+                     {lightred}{rgb}{1.0,0.39,0.28}
+? 
+! Undefined control sequence.
+l.63     \definecolor
+                     {lightgreen}{rgb}{0.48,0.99,0.0}
+? 
+! Undefined control sequence.
+l.64     \definecolor
+                     {lightblue}{rgb}{0.53,0.81,0.92}
+? 
+! Undefined control sequence.
+l.65     \definecolor
+                     {lightpurple}{rgb}{0.87,0.63,0.87}
+? 
+! Undefined control sequence.
+l.66     \definecolor
+                     {lightcyan}{rgb}{0.5,1.0,0.83}
+? 
+
+Overfull \hbox (76.88995pt too wide) in paragraph at lines 61--67
+[]\OT1/cmr/m/n/10 darkgraygray0.25 lightre-drgb1.0,0.39,0.28 light-green-rgb0.4
+8,0.99,0.0 light-bluergb0.53,0.81,0.92
+ []
+
+! Undefined control sequence.
+l.72     \DefineVerbatimEnvironment
+                                   {Highlighting}{Verbatim}{commandchars=\\\...
+
+? 
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.72     \DefineVerbatimEnvironment{H
+                                     ighlighting}{Verbatim}{commandchars=\\\...
+
+? 
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 72.
+(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 72.
+
+! Undefined control sequence.
+l.222     \definecolor
+                      {incolor}{rgb}{0.0, 0.0, 0.5}
+? 
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.222     \definecolor{i
+                        ncolor}{rgb}{0.0, 0.0, 0.5}
+? 
+! Undefined control sequence.
+l.223     \definecolor
+                      {outcolor}{rgb}{0.545, 0.0, 0.0}
+? 
+! Undefined control sequence.
+l.231     \hypersetup
+                     {
+? 
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.232       b
+             reaklinks=true,  % so long urls are correctly broken across lines
+? 
+No file "Python Notebook".aux.
+\openout1 = `"Python Notebook.aux"'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 244.
+LaTeX Font Info:    ... okay on input line 244.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 244.
+LaTeX Font Info:    ... okay on input line 244.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 244.
+LaTeX Font Info:    ... okay on input line 244.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 244.
+LaTeX Font Info:    ... okay on input line 244.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 244.
+LaTeX Font Info:    ... okay on input line 244.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 244.
+LaTeX Font Info:    ... okay on input line 244.
+*geometry* driver: auto-detecting
+*geometry* detected driver: dvips
+
+Package geometry Warning: The marginal notes overrun the paper.
+     Add 3.73001pt and more to the right margin.
+
+*geometry* verbose mode - [ preamble ] result:
+* driver: dvips
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=469.75502pt
+* \textheight=650.43001pt
+* \oddsidemargin=0.0pt
+* \evensidemargin=0.0pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+[1
+
+]
+LaTeX Font Info:    Try loading font information for U+msa on input line 247.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 247.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+
+LaTeX Warning: No \author given.
+
+
+LaTeX Warning: File `https://github.com/adam-p/markdown-here/raw/master/src/com
+mon/images/icon48.png' not found on input line 298.
+
+
+! LaTeX Error: File `https://github.com/adam-p/markdown-here/raw/master/src/com
+mon/images/icon48.png' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.298 .../raw/master/src/common/images/icon48.png}
+                                                  
+? 
+
+! LaTeX Error: Cannot determine size of graphic in https://github.com/adam-p/ma
+rkdown-here/raw/master/src/common/images/icon48.png (no BoundingBox).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.298 .../raw/master/src/common/images/icon48.png}
+                                                  
+? 
+File: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon
+48.png Graphic file (type eps)
+
+<https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.pn
+g>
+
+! LaTeX Error: Environment Verbatim undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.304     \begin{Verbatim}
+                          [commandchars=\\\{\}]
+? 
+! Undefined control sequence.
+l.305 {\color
+             {incolor}In [{\color{incolor}13}]:} \PY{n}{radius}\PY{o}{=}\PY{...
+
+? 
+! Undefined control sequence.
+l.305 {\color{incolor}In [{\color
+                                 {incolor}13}]:} \PY{n}{radius}\PY{o}{=}\PY{...
+
+? 
+! Undefined control sequence.
+\PY@tc #1->\textcolor 
+                      [rgb]{0.40,0.40,0.40}{#1}
+l.305 ...or{incolor}13}]:} \PY{n}{radius}\PY{o}{=}
+                                                  \PY{l+m+mi}{2}
+? 
+! Undefined control sequence.
+\PY@tc #1->\textcolor 
+                      [rgb]{0.40,0.40,0.40}{#1}
+l.305 ...]:} \PY{n}{radius}\PY{o}{=}\PY{l+m+mi}{2}
+                                                  
+? 
+! Undefined control sequence.
+\PY@tc #1->\textcolor 
+                      [rgb]{0.40,0.40,0.40}{#1}
+l.306          \PY{n}{pi}\PY{o}{=}
+                                  \PY{l+m+mf}{3.14}
+? 
+! Undefined control sequence.
+\PY@tc #1->\textcolor 
+                      [rgb]{0.40,0.40,0.40}{#1}
+l.306 ...     \PY{n}{pi}\PY{o}{=}\PY{l+m+mf}{3.14}
+                                                  
+? 
+! Undefined control sequence.
+\PY@tc #1->\textcolor 
+                      [rgb]{0.40,0.40,0.40}{#1}
+l.307          \PY{n}{diam}\PY{o}{=}
+                                    \PY{n}{radius}\PY{o}{*}\PY{l+m+mi}{2}
+? 
+! Undefined control sequence.
+\PY@tc #1->\textcolor 
+                      [rgb]{0.40,0.40,0.40}{#1}
+l.307 ...{n}{diam}\PY{o}{=}\PY{n}{radius}\PY{o}{*}
+                                                  \PY{l+m+mi}{2}
+? 
+! Undefined control sequence.
+\PY@tc #1->\textcolor 
+                      [rgb]{0.40,0.40,0.40}{#1}
+l.307 ...}{=}\PY{n}{radius}\PY{o}{*}\PY{l+m+mi}{2}
+                                                  
+? 
+! Undefined control sequence.
+\PY@tc #1->\textcolor 
+                      [rgb]{0.40,0.40,0.40}{#1}
+l.308          \PY{n}{area}\PY{o}{=}
+                                    \PY{n}{pi}\PY{o}{*}\PY{p}{(}\PY{n}{radiu...
+
+? 
+! Undefined control sequence.
+\PY@tc #1->\textcolor 
+                      [rgb]{0.40,0.40,0.40}{#1}
+l.308 ... \PY{n}{area}\PY{o}{=}\PY{n}{pi}\PY{o}{*}
+                                                  \PY{p}{(}\PY{n}{radius}\PY...
+
+? x
+ 
+Here is how much of TeX's memory you used:
+ 2379 strings out of 495021
+ 29057 string characters out of 6181350
+ 89231 words of memory out of 5000000
+ 5580 multiletter control sequences out of 15000+600000
+ 9305 words of font info for 36 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 27i,6n,26p,263b,238s stack positions out of 5000i,500n,10000p,200000b,80000s
+Output written on "Python Notebook.dvi" (1 page, 1144 bytes).
