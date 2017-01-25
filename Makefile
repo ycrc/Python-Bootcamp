@@ -1,4 +1,4 @@
-all: python.pdf data_analysis.pdf anaconda.pdf
+all: data_analysis.pdf anaconda.pdf
 
 python.pdf: python.tex
 	pdflatex python.tex

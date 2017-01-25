@@ -17,7 +17,7 @@
   Yale Center for Research Computing \\
   Yale University
 }
-\date{August 2016}
+\date{January 2017}
 \begin{document}
 
 
@@ -50,9 +50,11 @@ Anaconda is easy to install
 \item Execute the installer and follow the instructions
 \end{itemize}
 \vskip10pt
-Anaconda is installed on Yale clusters Omega and Grace
+To install Anaconda on a Linux cluster:
 \begin{verbatim}
-$ module load Langs/Python/2.7-anaconda
+$ wget \
+ https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh
+$ bash Anaconda3-4.2.0-Linux-x86_64.sh
 \end{verbatim}
 \end{frame}
 
@@ -66,7 +68,7 @@ Simplifies installation of Python packages
 \item Installs non-Python library dependencies (MKL, HDF5, Boost)
 \item Provides "virtual environment" capabilities
 \item Many \textit{channels} exist that support additional packages
-\item Documentation at \url{http://conda.pydata.org.docs/}
+\item Documentation at \url{http://conda.pydata.org/docs/}
 \end{itemize}
 \end{frame}
 
