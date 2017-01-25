@@ -8,7 +8,7 @@ overlapping with each read.
 import sys
 from intervaltree import IntervalTree
 
-print "initializing table"
+print("initializing table")
 table={}
 # sys.argv=['dummy', 'genes.txt', 'mappedreads.txt'] # for Jupyter
 for line in open(sys.argv[1]):
@@ -16,15 +16,15 @@ for line in open(sys.argv[1]):
     if not chrm in table:
         table[chrm]=IntervalTree()
     table[chrm][int(start):int(end)]=genename
-print "done"
+print("done")
 
-print "reading sequences"
+print=("reading sequences")
 
 for line in open(sys.argv[2]):
     name, chrm, pos, seq = line.strip().split()
     genes=table[chrm][int(pos):int(pos)+len(seq)]
     if genes:
-        print name, chrm, pos, seq
+        print(name, chrm, pos, seq)
         for gene in genes:
-            print '\t',gene.data
+            print('\t',gene.data)
 
