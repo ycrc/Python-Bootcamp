@@ -1,8 +1,0 @@
-
-
-summary={}
-
-for group, netid, usage in open(sys.argv[1]):
-    if not group in summary:
-        summary[group]={}
-        

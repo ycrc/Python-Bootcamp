@@ -1,8 +1,0 @@
-\frametitle{Warning about installing/updating packages}
-Installing packages into existing environment may cause problems
-\begin{itemize}
-\item best to install all necessary packages at same time
-\item \textbf{install} command may ask permission to update existing packages
-which may result in version conflicts
-\item install packages into new environments if possible to avoid conflicts
-\end{itemize}
