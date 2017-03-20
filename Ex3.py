@@ -18,7 +18,7 @@ for line in open(sys.argv[1]):
     table[chrm][int(start):int(end)]=genename
 print("done")
 
-print=("reading sequences")
+print("reading sequences")
 
 for line in open(sys.argv[2]):
     name, chrm, pos, seq = line.strip().split()
