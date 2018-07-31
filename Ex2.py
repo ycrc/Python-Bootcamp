@@ -1,5 +1,5 @@
 import os, sys, subprocess
-# sys.argv=['dummy', 'Ex2dir'] # for Jupyter we'll cheat
+# sys.argv=['Ex2.py', 'Ex2dir'] # for Jupyter we'll cheat
 start=sys.argv[1] 
 for d, subdirs, files in os.walk(start):
     for f in files:
@@ -15,3 +15,4 @@ for d, subdirs, files in os.walk(start):
             else:
                 print ("Failed on ", fn)
                 sys.exit(1)
+print("Done")
