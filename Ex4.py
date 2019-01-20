@@ -17,14 +17,13 @@ def initial(n):
 
 def p_accept(candcost, currcost, T):
     p = math.exp(-abs(candcost - currcost) / T)
-    #print("p=%f" % p)
     return p
 
 def doswap(curr):
     cand=curr[:]
     n=len(cand)
     i,j = sorted(random.sample(range(n),2))
-    cand[i:j] = reversed(cand[i:j])
+    cand[i:j+1] = reversed(cand[i:j+1])
     return cand
 
 def plot(path):
@@ -35,11 +34,10 @@ def plot(path):
     plt.plot(xs, ys, 'co-')
     plt.show()
 
-if __name__=='__main__':
+def main(n):
     random.seed(0)
-    n=100
     curr=initial(n)
-    plot(curr)
+    #plot(curr)
     currcost=cost(curr)
     T=math.sqrt(n)
     while T > 1e-10:
@@ -55,5 +53,6 @@ if __name__=='__main__':
             print("backward T %f cost %f" % (T, currcost))
         T=T*.999
     
-    plot(curr)
+    #plot(curr)
 
+main(100)
