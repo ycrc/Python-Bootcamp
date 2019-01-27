@@ -34,12 +34,10 @@ def plot(path):
     plt.plot(xs, ys, 'co-')
     plt.show()
 
-def main(n):
-    random.seed(0)
-    curr=initial(n)
-    #plot(curr)
+def optimize(cities):
+    curr=cities
     currcost=cost(curr)
-    T=math.sqrt(n)
+    T=math.sqrt(len(cities))
     while T > 1e-10:
         cand=doswap(curr)
         candcost=cost(cand)
@@ -52,7 +50,12 @@ def main(n):
             currcost=candcost
             print("backward T %f cost %f" % (T, currcost))
         T=T*.999
-    
-    #plot(curr)
+    return curr
 
-main(100)
+if __name__=='__main__':
+    cities=initial(100)
+    print("cost {}".format(cost(cities)))
+    plot(cities)
+    best=optimize(cities)
+    print("cost {}".format(cost(best)))
+    plot(best)
