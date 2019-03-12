@@ -1,7 +1,8 @@
 all: toslides 
 
-toslides:
-	jupyter nbconvert PythonNotebook.ipynb --to slides --post serve
+html:   PythonNotebook.ipynb
+	jupyter nbconvert --to slides PythonNotebook.ipynb --output-dir ./docs/ --reveal-prefix "https://cdn.jsdelivr.net/npm/reveal.js@3.6.0 "
+	cp docs/PythonNotebook.slides.html docs/index.html
 
 clean:
 	/bin/rm -f *.aux *.log *.out *.nav *.toc *.vrb *.snm
